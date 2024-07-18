@@ -34,6 +34,15 @@ defineProps<{
   font-weight: bold;
   unicode-bidi: isolate;
 }
+.content :deep(h4) {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
 .content :deep(p) {
   display: block;
   margin-block-start: 1em;

@@ -4,6 +4,7 @@ import type { Post } from 'cms/sanity.types'
 defineProps<{
   post: Post
 }>()
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -16,7 +17,7 @@ defineProps<{
     />
     <div flex flex-col items-start gap-4 text-align-left>
       <NuxtLink
-        :to="`/post/${post.slug?.current}`"
+        :to="localePath(`/post/${post.slug?.current}`)"
         prefetch
         text-3xl font-bold
         before:absolute before:left-0 before:top-0 before:h-full before:w-full before:content-empty

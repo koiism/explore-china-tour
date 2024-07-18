@@ -4,9 +4,11 @@
   "scripts": {
     "dev": "sanity dev",
     "start": "sanity start",
-    "build": "sanity build"
+    "build": "sanity build",
+    "gen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {
+    "@sanity/document-internationalization": "^3.0.0",
     "@sanity/vision": "3.38.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

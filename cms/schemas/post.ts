@@ -1,10 +1,17 @@
 import {defineField, defineType} from 'sanity'
+import {isUniqueOtherThanLanguage} from '../utils/Internationalization'
 
 export default defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
   fields: [
+    defineField({
+      name: 'language',
+      type: 'string',
+      readOnly: true,
+      hidden: true,
+    }),
     defineField({
       name: 'title',
       title: 'Title',
@@ -18,6 +25,7 @@ export default defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: isUniqueOtherThanLanguage,
       },
     }),
     defineField({

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const switchLocalePath = useSwitchLocalePath()
 const i18nStore = useI18nStore()
 </script>
 
@@ -7,16 +8,17 @@ const i18nStore = useI18nStore()
     mode="hover"
   >
     <div i-carbon-translate />
-    <template #panel="{ close }">
+    <template #panel>
       <div p-1 text-size-sm card-base>
         <ul>
           <li
             v-for="locale in i18nStore.otherLocales"
             :key="locale.key"
             cursor-pointer
-            @click="i18nStore.setLocale(locale.key); close()"
           >
-            {{ locale.label }}
+            <NuxtLink :to="switchLocalePath(locale.key)">
+              {{ locale.label }}
+            </NuxtLink>
           </li>
         </ul>
       </div>

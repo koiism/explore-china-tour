@@ -1,5 +1,5 @@
 {
-  "i18n-ally.sourceLanguage": "zh-cn",
+  "i18n-ally.sourceLanguage": "en",
   "i18n-ally.keystyle": "nested",
   "i18n-ally.localesPaths": [
     "app/i18n"
@@ -16,4 +16,5 @@
     "google",
     "baidu"
   ],
+  "i18n-ally.extract.autoDetect": true,
 }

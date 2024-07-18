@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import type { Post } from 'cms/sanity.types'
-import { PortableText } from '@portabletext/vue'
-import { POST_QUERY } from '~/sanity/queries'
+import { queryPostBySlug } from '~/sanity/queries'
 
 definePageMeta({
   layout: 'default',
 })
-const route = useRoute<'post-slug'>()
+const route = useRoute<'post-slug___en'>()
 const slug = route.params.slug
-const { data: post } = await useSanityQuery<Post>(POST_QUERY, { slug })
+const { data: post } = await queryPostBySlug(slug)
+const i18nStore = useI18nStore()
 </script>
 
 <template>
@@ -18,6 +17,13 @@ const { data: post } = await useSanityQuery<Post>(POST_QUERY, { slug })
       <h1 text-title>
         {{ post?.title }}
       </h1>
+      <UAlert
+        v-if="post?.language === 'en' && i18nStore.currentLocale !== 'en'"
+        icon="i-heroicons-information-circle"
+        color="amber"
+        variant="subtle"
+        :description="$t('no-locale', { language: i18nStore.currentLocaleName })"
+      />
       <p text-p>
         {{ post?.excerpt }}
       </p>

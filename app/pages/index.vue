@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import type { Post } from 'cms/sanity.types'
-
-import { POSTS_QUERY } from '~/sanity/queries'
+import { queryPosts } from '~/sanity/queries'
 
 definePageMeta({
   layout: 'home',
 })
 
-const { data } = await useSanityQuery<Post[]>(POSTS_QUERY)
+const { data } = await queryPosts()
 </script>
 
 <template>

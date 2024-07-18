@@ -18,6 +18,7 @@ const localesNameMap: Record<string, string> = {
 export const useI18nStore = defineStore('i18n', () => {
   const i18n = useI18n()
   const currentLocale = useStorageAsync('locale', i18n.locale)
+  const currentLocaleName = computed(() => localesNameMap[currentLocale.value])
   const locales = computed(() => i18n.availableLocales)
   const setLocale = (locale: string) => {
     currentLocale.value = locale
@@ -37,6 +38,7 @@ export const useI18nStore = defineStore('i18n', () => {
 
   return {
     currentLocale,
+    currentLocaleName,
     locales,
     setLocale,
     otherLocales,
