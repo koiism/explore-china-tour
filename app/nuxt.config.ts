@@ -99,7 +99,7 @@ export default defineNuxtConfig({
     projectId: sanityProjectId,
     dataset: process.env.NUXT_SANITY_DATASET,
     apiVersion: '2024-03-15',
-    useCdn: false,
+    useCdn: true,
     visualEditing: {
       studioUrl: sanityStudioUrl,
       token: sanityToken,

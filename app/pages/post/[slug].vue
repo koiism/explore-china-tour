@@ -6,19 +6,19 @@ definePageMeta({
 })
 const route = useRoute<'post-slug___en'>()
 const slug = route.params.slug
-const { data: post } = await queryPostBySlug(slug)
+const { data: post, status } = await queryPostBySlug(slug)
 const i18nStore = useI18nStore()
 </script>
 
 <template>
-  <div>
+  <div v-if="post">
     <SanityImage :asset-id="post?.mainImage?.asset?._ref" auto="format" h-82 w-full object-cover />
     <div layout-md flex flex-col gap-2 px-4 py-10 text-align-left>
       <h1 text-title>
         {{ post?.title }}
       </h1>
       <UAlert
-        v-if="post?.language === 'en' && i18nStore.currentLocale !== 'en'"
+        v-if="post?.language === 'en' && i18nStore.currentLocale !== 'en' && status === 'success'"
         icon="i-heroicons-information-circle"
         color="amber"
         variant="subtle"
@@ -34,6 +34,9 @@ const i18nStore = useI18nStore()
         <ContentBlocks :blocks="post.body" mt-20 />
       </div>
     </div>
+  </div>
+  <div v-else h-screen flex items-center justify-center>
+    <NotFound />
   </div>
 </template>
 

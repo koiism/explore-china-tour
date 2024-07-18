@@ -1,4 +1,6 @@
 {
+  "back": "返回",
   "explore-china": "探索中国",
-  "no-locale": "当前文章没有{language}版本，默认展示英文版"
+  "no-locale": "当前文章没有{language}版本，默认展示英文版",
+  "not-found": "未找到"
 }
