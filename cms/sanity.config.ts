@@ -51,7 +51,13 @@ export default defineConfig({
   plugins: [
     structureTool(),
     presentationTool({
-      previewUrl: process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000',
+      previewUrl: {
+        origin: process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000',
+        previewMode: {
+          enable: '/preview/enable',
+          disable: '/preview/disable',
+        },
+      },
       locate,
     }),
     visionTool(),

@@ -1,5 +1,5 @@
 {
-  "name": "sanity-template-remix-clean-studio",
+  "name": "cms",
   "private": true,
   "scripts": {
     "dev": "sanity dev",

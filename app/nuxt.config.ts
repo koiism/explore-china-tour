@@ -1,11 +1,17 @@
 import process from 'node:process'
+import Path from 'node:path'
 import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 
 const sanityProjectId = process.env.SANITY_STUDIO_PROJECT_ID!
 const sanityToken = process.env.SANITY_STUDIO_TOKEN!
+const sanityStudioUrl = process.env.SANITY_VISUAL_EDITING_STUDIO_URL
 
 export default defineNuxtConfig({
+  alias: {
+    '~': Path.resolve('.'),
+    'cms': Path.resolve('../cms'),
+  },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -14,17 +20,10 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
-    'radix-vue',
     '@nuxt/icon',
     '@nuxtjs/sanity',
+    '@nuxt/ui',
   ],
-
-  sanity: {
-    projectId: sanityProjectId,
-    apiVersion: '2023-03-20',
-    token: sanityToken,
-    useCdn: false,
-  },
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -51,7 +50,7 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: false,
       routes: ['/'],
-      ignore: ['/hi'],
+      ignore: ['/post'],
     },
   },
 
@@ -87,6 +86,22 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       standalone: false,
+    },
+  },
+
+  i18n: {
+    vueI18n: './i18n.config.ts',
+  },
+
+  sanity: {
+    projectId: sanityProjectId,
+    dataset: process.env.NUXT_SANITY_DATASET,
+    apiVersion: '2024-03-15',
+    useCdn: false,
+    visualEditing: {
+      studioUrl: sanityStudioUrl,
+      token: sanityToken,
+      stega: true,
     },
   },
 

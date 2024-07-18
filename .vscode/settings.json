@@ -1,2 +1,19 @@
 {
+  "i18n-ally.sourceLanguage": "zh-cn",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": [
+    "app/i18n"
+  ],
+  "i18n-ally.enabledFrameworks": [
+    "vue"
+  ],
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.translate.baidu.apiSecret": "bId6PaMOQ7pdQjENgaNK",
+  "i18n-ally.translate.baidu.appid": "20240716002101219",
+  "i18n-ally.translate.deepl.enableLog": true,
+  "i18n-ally.translate.deepl.useFreeApiEntry": true,
+  "i18n-ally.translate.engines": [
+    "google",
+    "baidu"
+  ],
 }

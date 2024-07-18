@@ -10,10 +10,17 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [
-    ['btn', 'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
-    ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
-  ],
+  shortcuts: {
+    'layout-md': 'mx-auto max-w-screen-md',
+    'switch-animation': 'transition duration-300',
+    'text-base': 'text-[#20202a] dark:text-[#f0f0f0] switch-animation',
+    'text-title': 'text-base text-3xl md:text-5xl font-bold',
+    'text-p': 'text-base text-xl font-bold font-mono md:line-height-loose line-height-normal',
+    'bg-base': 'bg-[#f0f0f0] dark:bg-[#20202a] switch-animation',
+    'card-base': 'bg-[#ffffff] dark:bg-[#17191ecc] switch-animation ring ring-1 ring-[#cedbe0] dark:ring-[#353841] rounded',
+    'switch-label-base': 'bg-gray-200 dark:bg-gray-800 switch-animation',
+    'switch-span-base': 'bg-white dark:bg-gray-300 switch-animation',
+  },
   presets: [
     presetUno(),
     presetAttributify(),

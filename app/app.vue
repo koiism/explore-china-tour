@@ -1,24 +1,12 @@
 <script setup lang="ts">
-import type { Post } from './sanity/types'
-import { POSTS_QUERY } from '~/sanity/queries'
 import { appName } from '~/constants'
-
-const query = POSTS_QUERY
 
 useHead({
   title: appName,
 })
-const { data, refresh } = useSanityQuery<Post[]>(query)
-function onRefresh() {
-  refresh()
-}
 </script>
 
 <template>
-  {{ data?.[0]._id }}
-  <button @click="onRefresh">
-    refresh
-  </button>
   <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
@@ -34,8 +22,38 @@ body,
   padding: 0;
 }
 
+html {
+  transition-property: color, background-color, border-color, outline-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
 html.dark {
   background: #222;
-  color: white;
+  color: rgba(229, 231, 235, 1);
+}
+.dot-bg {
+  --dot-bg-color: #fff;
+  --dog-color: #a5aeb850;
+  --dot-mask-color: red;
+}
+.dark .dot-bg {
+  --dot-bg-color: #0d1117;
+  --dog-color: #2f353c;
+  --dot-mask-color: red;
+}
+.dot-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--dot-bg-color) 22px, transparent 1%) 50%,
+    linear-gradient(var(--dot-bg-color) 22px, transparent 1%) 50%,
+    var(--dog-color);
+  background-position: center center;
+  background-size: 24px 24px;
+  mask-image: linear-gradient(0deg, transparent 5%, var(--dot-mask-color));
 }
 </style>
