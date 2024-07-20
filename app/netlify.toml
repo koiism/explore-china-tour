@@ -1,5 +1,5 @@
 [build]
-publish = ".output"
+publish = "app/.nuxt/dist"
 command = "pnpm run build:app"
 
 [build.environment]
