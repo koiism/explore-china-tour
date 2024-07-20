@@ -1,5 +1,5 @@
 [build]
-publish = "app/.output"
+publish = "app/dist"
 command = "pnpm run build:app"
 
 [build.environment]
