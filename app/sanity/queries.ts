@@ -2,7 +2,6 @@ import type { Post } from 'cms/sanity.types'
 import groq from 'groq'
 
 export const POSTS_QUERY = groq`*[_type == "post" && language == $language && defined(slug.current)] | order(publishedAt desc)`
-
 export async function queryPosts() {
   const i18n = useI18n()
   const sanity = useSanity()

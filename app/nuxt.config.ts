@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/sanity',
     '@nuxt/ui',
+    '@nuxtjs/seo',
   ],
 
   experimental: {
@@ -105,6 +106,12 @@ export default defineNuxtConfig({
       token: sanityToken,
       stega: true,
     },
+  },
+
+  sitemap: {
+    sources: [
+      '/api/__sitemap__/urls',
+    ],
   },
 
   compatibilityDate: '2024-07-16',
