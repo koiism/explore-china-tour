@@ -5,6 +5,7 @@
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
+    "build:cms": "sanity build",
     "gen": "sanity schema extract && sanity typegen generate"
   },
   "dependencies": {

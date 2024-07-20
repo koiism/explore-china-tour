@@ -5,6 +5,7 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "build": "nuxi build",
+    "build:app": "nuxi build",
     "dev:pwa": "VITE_PLUGIN_PWA=true nuxi dev",
     "dev": "nuxi dev",
     "generate": "nuxi generate",

@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "pnpm -r dev",
     "lint": "pnpm -r lint",
-    "build": "pnpm run build --filter=app",
+    "build:app": "pnpm -r build:app",
+    "build:cms": "pnpm -r build:cms",
     "typecheck": "pnpm -r typecheck",
     "format": "prettier --cache --write ."
   },
