@@ -6,7 +6,9 @@ const switchLocalePath = useSwitchLocalePath()
 const router = useRouter()
 onMounted(() => {
   const path = switchLocalePath(currentLocale.value)
-  router.push(path)
+  router.push(path).then(() => {
+    umTrackView()
+  })
 })
 
 useHead({

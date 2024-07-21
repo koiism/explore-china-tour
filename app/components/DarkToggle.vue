@@ -11,6 +11,9 @@ useHead({
 
 function toggleDark() {
   color.preference = color.value === 'dark' ? 'light' : 'dark'
+  umTrackEvent('dark-toggle', {
+    color: color.value,
+  })
 }
 </script>
 
