@@ -1,6 +1,5 @@
 import process from 'node:process'
 import Path from 'node:path'
-import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 
 const sanityProjectId = process.env.SANITY_STUDIO_PROJECT_ID!
@@ -13,13 +12,12 @@ export default defineNuxtConfig({
     'cms': Path.resolve('../cms'),
   },
   modules: [
+    '@nuxtjs/i18n',
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
-    '@vite-pwa/nuxt',
     '@nuxt/eslint',
-    '@nuxtjs/i18n',
     '@nuxt/icon',
     '@nuxtjs/sanity',
     '@nuxt/ui',
@@ -72,8 +70,6 @@ export default defineNuxtConfig({
       ],
     },
   },
-
-  pwa,
 
   devtools: {
     enabled: true,
