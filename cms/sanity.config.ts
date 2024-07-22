@@ -5,6 +5,8 @@ import {schemaTypes} from './schemas'
 import {presentationTool, DocumentLocationResolver} from 'sanity/presentation'
 import {Observable, map} from 'rxjs'
 import {documentInternationalization} from '@sanity/document-internationalization'
+import {internationalizedArray} from 'sanity-plugin-internationalized-array'
+
 
 export const projectId = process.env.SANITY_STUDIO_PROJECT_ID!
 export const dataset = process.env.SANITY_STUDIO_DATASET!
@@ -57,6 +59,14 @@ export default defineConfig({
         {id: 'zh-cn', title: '简体中文'},
       ],
       schemaTypes: ['post'],
+    }),
+    internationalizedArray({
+      languages: [
+        {id: 'en', title: 'English'},
+        {id: 'fr', title: 'French'}
+      ],
+      defaultLanguages: ['en'],
+      fieldTypes: ['string', 'text'],
     }),
     structureTool(),
     presentationTool({

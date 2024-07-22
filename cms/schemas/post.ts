@@ -3,7 +3,7 @@ import {isUniqueOtherThanLanguage} from '../utils/Internationalization'
 
 export default defineType({
   name: 'post',
-  title: 'Post',
+  title: 'Posooot',
   type: 'document',
   fields: [
     defineField({
