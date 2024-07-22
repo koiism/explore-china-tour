@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { appName } from '~/constants'
 
+const { useUParams } = useUmami()
 const { currentLocale } = storeToRefs(useI18nStore())
-const switchLocalePath = useSwitchLocalePath()
-const router = useRouter()
-onMounted(() => {
-  const path = switchLocalePath(currentLocale.value)
-  router.push(path).then(() => {
-    umTrackView()
-  })
+
+useUParams({
+  language: currentLocale.value,
 })
 
 useHead({

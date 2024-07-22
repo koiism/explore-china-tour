@@ -7,6 +7,7 @@ const sanityToken = process.env.SANITY_STUDIO_TOKEN!
 const sanityStudioUrl = process.env.SANITY_VISUAL_EDITING_STUDIO_URL
 const sanityDataset = process.env.NUXT_SANITY_DATASET!
 const paypalClientId = process.env.PAYPAL_CLIENT_ID!
+const baseUrl = process.env.APP_BASE_URL!
 
 export default defineNuxtConfig({
   alias: {
@@ -101,6 +102,7 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
     locales: ['en', 'zh-cn'],
     defaultLocale: 'en',
+    baseUrl,
   },
 
   sanity: {
