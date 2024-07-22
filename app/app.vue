@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { appName } from '~/constants'
 
+const { useUParams } = useUmami()
+const { currentLocale } = storeToRefs(useI18nStore())
+
+useUParams({
+  language: currentLocale.value,
+})
+
 useHead({
   title: appName,
 })
 </script>
 
 <template>
-  <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

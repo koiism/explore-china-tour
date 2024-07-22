@@ -17,16 +17,19 @@ const localesNameMap: Record<string, string> = {
 
 export const useI18nStore = defineStore('i18n', () => {
   const i18n = useI18n()
-  const currentLocale = useStorageAsync('locale', i18n.locale)
-  const currentLocaleName = computed(() => localesNameMap[currentLocale.value])
-  const locales = computed(() => i18n.availableLocales)
-  const setLocale = (locale: string) => {
+  const currentLocale = i18n.locale
+  const switchLocalePath = useSwitchLocalePath()
+  const router = useRouter()
+  const setCurrentLocale = (locale: string) => {
     currentLocale.value = locale
     i18n.setLocale(locale)
+    router.push(switchLocalePath(locale))
   }
+  const currentLocaleName = computed(() => localesNameMap[currentLocale.value])
+  const locales = i18n.availableLocales
 
   const otherLocales = computed(() => {
-    return locales.value.filter((locale) => {
+    return locales.filter((locale) => {
       return locale !== currentLocale.value
     }).map((locale) => {
       return {
@@ -38,9 +41,9 @@ export const useI18nStore = defineStore('i18n', () => {
 
   return {
     currentLocale,
+    setCurrentLocale,
     currentLocaleName,
     locales,
-    setLocale,
     otherLocales,
   }
 })

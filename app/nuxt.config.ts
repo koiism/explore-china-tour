@@ -5,11 +5,22 @@ import { appDescription } from './constants/index'
 const sanityProjectId = process.env.SANITY_STUDIO_PROJECT_ID!
 const sanityToken = process.env.SANITY_STUDIO_TOKEN!
 const sanityStudioUrl = process.env.SANITY_VISUAL_EDITING_STUDIO_URL
+const sanityDataset = process.env.NUXT_SANITY_DATASET!
+const paypalClientId = process.env.PAYPAL_CLIENT_ID!
+const baseUrl = process.env.APP_BASE_URL!
 
 export default defineNuxtConfig({
   alias: {
     '~': Path.resolve('.'),
     'cms': Path.resolve('../cms'),
+  },
+  extends: [
+    'nuxt-umami',
+  ],
+  appConfig: {
+    umami: {
+      version: 2,
+    },
   },
   modules: [
     '@nuxtjs/i18n',
@@ -22,6 +33,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sanity',
     '@nuxt/ui',
     '@nuxtjs/seo',
+    'nuxt-paypal',
   ],
 
   experimental: {
@@ -90,11 +102,12 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
     locales: ['en', 'zh-cn'],
     defaultLocale: 'en',
+    baseUrl,
   },
 
   sanity: {
     projectId: sanityProjectId,
-    dataset: process.env.NUXT_SANITY_DATASET,
+    dataset: sanityDataset,
     apiVersion: '2024-03-15',
     useCdn: true,
     visualEditing: {
@@ -108,6 +121,9 @@ export default defineNuxtConfig({
     sources: [
       '/api/__sitemap__/urls',
     ],
+  },
+  paypal: {
+    clientId: paypalClientId,
   },
 
   compatibilityDate: '2024-07-16',
