@@ -16,6 +16,11 @@ export default defineNuxtConfig({
   extends: [
     'nuxt-umami',
   ],
+  appConfig: {
+    umami: {
+      version: 2,
+    },
+  },
   modules: [
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
