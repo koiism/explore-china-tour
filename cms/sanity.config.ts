@@ -1,3 +1,4 @@
+import {media} from 'sanity-plugin-media'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
@@ -70,6 +71,7 @@ export default defineConfig({
       locate,
     }),
     visionTool(),
+    media(),
   ],
   schema: {
     types: schemaTypes,
