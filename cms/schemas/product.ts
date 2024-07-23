@@ -1,150 +1,155 @@
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export default defineType({
-    name: 'product',
-    title: 'Product',
-    type: 'document',
-    fields: [
-        defineField({
+  name: 'product',
+  title: 'Product',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      validation: (Rule) => {
+        return Rule.required();
+      },
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    }),
+    defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'array',
+      of: [ { type: 'image' } ]
+    }),
+    defineField({
+      name: 'ticketOptions',
+      title: 'Ticket Options',
+      type: 'array',
+      of: [ defineArrayMember({
+        name: 'ticketOption',
+        title: 'Ticket Option',
+        type: 'object',
+        fields: [
+          defineField({
             name: 'title',
             title: 'Title',
             type: 'string',
-        }),
-        defineField({
-            name: 'slug',
-            title: 'Slug',
-            type: 'slug',
-            validation: (Rule) => Rule.required(),
-            options: {
-                source: 'title',
-                maxLength: 96,
-            },
-        }),
-        defineField({
-            name : 'city',
-            title : 'City',
-            type : 'reference',
-            to : [{ type : 'city'}]
-        }),
-        defineField({
-            name : 'category',
-            title : 'Category',
-            type : 'reference',
-            to : [{ type : 'category'}]
-        }),
-        defineField({
-            name: 'openingTime',
-            title: 'Opening Time',
-            type: 'array',
-            of: [defineArrayMember({
-                name: 'detail',
-                title: 'Detail',
-                type: 'object',
-                fields: [
-                    defineField({name : 'desc', title: 'Desc', type : 'string'}),
-                    defineField({name : 'start', title: 'Start', type : 'string'}),
-                    defineField({name : 'end', title: 'End', type : 'string'}),
-                ]
-            })]
-        }),
-        defineField({
-            name: 'address',
-            title: 'Address',
-            type: 'geopoint',
-        }),
-        defineField({
-            name: 'intro',
-            title: 'Introduction',
+          }),
+          defineField({
+            name: 'description',
+            title: 'Option Descrption',
             type: 'text',
-        }),
-        defineField({
-            name: 'enterInfo',
-            title: 'Enter Infomation',
-            type: 'text',
-        }),
-        defineField({
-            name: 'notice',
-            title: 'Notice',
-            type: 'blockContent',
-        }),
-        defineField({
-            name: 'cancelRelativeTime',
-            title: 'Cancel Relative Time',
-            type: 'number',
-            validation: rule => rule.integer().positive()
-        }),
-        defineField({
-            name: 'image',
-            title: 'Image',
-            type: 'array',
-            of: [{ type: 'image' }]
-        }),
+          }),
+          defineField({
+            name : 'entryTime',
+            title : 'Entry Time',
+            type : 'array',
+            of : [ { type : 'string' } ]
+          }),
+          defineField({
+            name : 'dateRange',
+            title : 'Date Range',
+            type : 'object',
+            fields :[
+              defineField({ name: 'starDate', title : 'Start Date', type :'date' }),
+              defineField({ name: 'endDate', title : 'End Date', type :'date' }),
+            ]
+          }),
+          defineField({
+            name : 'priceOptions',
+            title : 'Price Option',
+            type : 'array',
+            of : [ defineArrayMember({
+              name : 'priceOption',
+              title : 'Price Option',
+              type : 'object',
+              fields:[
+                defineField({ name: 'price', title: 'Price(USD)', type: 'number', }),
+                defineField({ name: 'ticketApplicability', title: 'Ticket Applicability', type: 'text', })
+              ]
+            }) ]
+          }) ],
+      }) ],
+    }),
+    defineField({
+      name : 'city',
+      title : 'City',
+      type : 'reference',
+      to : [ { type : 'city' } ]
+    }),
+    defineField({
+      name : 'category',
+      title : 'Category',
+      type : 'reference',
+      to : [ { type : 'category' } ]
+    }),
+    defineField({
+      name: 'openingTime',
+      title: 'Opening Time',
+      type: 'array',
+      of: [ defineArrayMember({
+        name: 'detail',
+        title: 'Detail',
+        type: 'object',
+        fields: [
+          defineField({ name : 'desc', title: 'Desc', type : 'string' }),
+          defineField({ name : 'start', title: 'Start', type : 'string' }),
+          defineField({ name : 'end', title: 'End', type : 'string' }),
+        ]
+      }) ]
+    }),
+    defineField({
+      name: 'address',
+      title: 'Address',
+      type: 'geopoint',
+    }),
+    defineField({
+      name: 'intro',
+      title: 'Introduction',
+      type: 'text',
+    }),
+    defineField({
+      name: 'enterInfo',
+      title: 'Enter Infomation',
+      type: 'text',
+    }),
+    defineField({
+      name: 'notice',
+      title: 'Notice',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'cancelRelativeTime',
+      title: 'Cancel Relative Time',
+      type: 'number',
+      validation: (rule) => {
+        return rule.integer().positive();
+      }
+    }),
 
-        defineField({
-            name: 'ticketOptions',
-            title: 'Ticket Options',
-            type: 'array',
-            of: [defineArrayMember({
-                name: 'ticketOption',
-                title: 'Ticket Option',
-                type: 'object',
-                fields: [
-                    defineField({
-                        name: 'title',
-                        title: 'Title',
-                        type: 'string',
-                    }),
-                    defineField({
-                        name: 'description',
-                        title: 'Option Descrption',
-                        type: 'text',
-                    }),
-                    defineField({
-                        name : 'entryTime',
-                        title : 'Entry Time',
-                        type : 'array',
-                        of : [{ type : 'string'}]
-                    }),
-                    defineField({
-                        name : 'dateRange',
-                        title : 'Date Range',
-                        type : 'object',
-                        fields :[
-                            defineField({name: 'starDate', title : 'Start Date', type :'date'}),
-                            defineField({name: 'endDate', title : 'End Date', type :'date'}),
-                        ]
-                    }),
-                    defineField({
-                        name : 'priceOptions',
-                        title : 'Price Option',
-                        type : 'array',
-                        of : [defineArrayMember({
-                            name : 'priceOption',
-                            title : 'Price Option',
-                            type : 'object',
-                            fields:[
-                                defineField({name: 'price',title: 'Price(USD)',type: 'number',}),
-                                defineField({name: 'ticketApplicability',title: 'Ticket Applicability', type: 'text',})
-                            ]
-                        })]
-                    })],
-                })],
-            })
-        ],
-    preview: {
-        select: {
-            title: 'title',
-            author: 'author.name',
-        },
-        prepare(selection) {
-            const { author, title } = selection
-            return { 
-                ...selection, 
-                title: title || 'untitled',
-                subtitle: author && `by ${author}` 
-            }
-        },
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      author: 'author.name',
+      media: 'image.0.asset'
     },
-})
+    prepare: function(selection) {
+      const { author, title } = selection;
+      return {
+        ...selection,
+        title: title || 'untitled',
+        subtitle: author && `by ${author}`
+      };
+    },
+  },
+});
 
 
