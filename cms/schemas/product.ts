@@ -69,11 +69,8 @@ export default defineType({
             of : [ defineArrayMember({
               name : 'priceOption',
               title : 'Price Option',
-              type : 'object',
-              fields:[
-                defineField({ name: 'price', title: 'Price(USD)', type: 'number', }),
-                defineField({ name: 'ticketApplicability', title: 'Ticket Applicability', type: 'text', })
-              ]
+              type : 'reference',
+              to : [ { type : 'priceOption' } ]
             }) ]
           }) ],
       }) ],

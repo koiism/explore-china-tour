@@ -1,9 +1,9 @@
-import {defineField, defineType} from 'sanity'
-import {isUniqueOtherThanLanguage} from '../utils/Internationalization'
+import { defineField, defineType } from 'sanity';
+import { isUniqueOtherThanLanguage } from '../utils/Internationalization';
 
 export default defineType({
   name: 'post',
-  title: 'Posooot',
+  title: 'Post',
   type: 'document',
   fields: [
     defineField({
@@ -21,7 +21,9 @@ export default defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => {
+        return Rule.required();
+      },
       options: {
         source: 'title',
         maxLength: 96,
@@ -54,9 +56,9 @@ export default defineType({
       author: 'author.name',
       media: 'mainImage',
     },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
+    prepare: function(selection) {
+      const { author } = selection;
+      return { ...selection, subtitle: author && `by ${author}` };
     },
   },
-})
+});
