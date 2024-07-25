@@ -5,6 +5,7 @@ export default defineField({
   title : 'Price Option',
   type : 'document',
   fields:[
+    defineField({ name: 'title', title: 'Title', type: 'string', }),
     defineField({ name: 'price', title: 'Price(USD)', type: 'number', }),
     defineField({ name: 'ticketApplicability', title: 'Ticket Applicability', type: 'text', })
   ]
