@@ -118,8 +118,8 @@ export default defineType({
       type: 'object',
       fields : [
         defineField({name : 'whatToBring', title : 'What to Bring', type : 'text'}),
-        defineField({name : 'howToUseTickets', title : 'How to Use The Ticket', type : 'text'}),
-        defineField({name : 'freeTicketPolicy', title : 'Free Ticket Policy', type : 'text'})
+        defineField({name : 'howToUseTickets', title : 'How to Use The Ticket', type : 'blockContent'}),
+        defineField({name : 'freeTicketPolicy', title : 'Free Ticket Policy', type : 'blockContent'})
       ]
     }),
     defineField({
