@@ -124,6 +124,11 @@ export default defineType({
       ]
     }),
     defineField({
+      name: 'notAllowed',
+      title: 'Not Allowed',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'notice',
       title: 'Notice',
       type: 'blockContent',
