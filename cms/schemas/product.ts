@@ -60,6 +60,7 @@ export default defineType({
             fields :[
               defineField({ name: 'starDate', title : 'Start Date', type :'date' }),
               defineField({ name: 'endDate', title : 'End Date', type :'date' }),
+              defineField({ name:'closedDate', title : 'Closed Date(Mon to Sun)', type : 'string'})
             ]
           }),
           defineField({
