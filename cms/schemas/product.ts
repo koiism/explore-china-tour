@@ -58,9 +58,9 @@ export default defineType({
             title : 'Date Range',
             type : 'object',
             fields :[
-              defineField({ name: 'starDate', title : 'Start Date', type :'date' }),
+              defineField({ name: 'startDate', title : 'Start Date', type :'date' }),
               defineField({ name: 'endDate', title : 'End Date', type :'date' }),
-              defineField({ name:'closedDate', title : 'Closed Date(Mon to Sun)', type : 'string'})
+              defineField({ name: 'closedDate', title : 'Closed Date(Mon to Sun)', type : 'string' })
             ]
           }),
           defineField({
@@ -118,9 +118,9 @@ export default defineType({
       title: 'Enter Infomation',
       type: 'object',
       fields : [
-        defineField({name : 'whatToBring', title : 'What to Bring', type : 'text'}),
-        defineField({name : 'howToUseTickets', title : 'How to Use The Ticket', type : 'blockContent'}),
-        defineField({name : 'freeTicketPolicy', title : 'Free Ticket Policy', type : 'blockContent'})
+        defineField({ name : 'whatToBring', title : 'What to Bring', type : 'text' }),
+        defineField({ name : 'howToUseTickets', title : 'How to Use The Ticket', type : 'blockContent' }),
+        defineField({ name : 'freeTicketPolicy', title : 'Free Ticket Policy', type : 'blockContent' })
       ]
     }),
     defineField({

@@ -14,6 +14,12 @@ defineProps<{
 </template>
 
 <style scoped>
+.content > :first-child {
+  margin-block-start: 0;
+}
+.content > :last-child {
+  margin-block-end: 0;
+}
 .content :deep(h2) {
   display: block;
   font-size: 1.5em;
@@ -58,7 +64,7 @@ defineProps<{
   margin-block-end: 1em;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
-  padding-inline-start: 40px;
+  padding-inline-start: 1.2em;
   unicode-bidi: isolate;
 }
 .content :deep(li) {

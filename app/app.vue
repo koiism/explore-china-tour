@@ -34,11 +34,13 @@ html {
     backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+  background: #fff;
 }
 
 html.dark {
   background: #222;
   color: rgba(229, 231, 235, 1);
+  color-scheme: auto;
 }
 .dot-bg {
   --dot-bg-color: #fff;

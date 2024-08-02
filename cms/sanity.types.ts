@@ -97,7 +97,7 @@ export type Product = {
     description?: string;
     entryTime?: Array<string>;
     dateRange?: {
-      starDate?: string;
+      startDate?: string;
       endDate?: string;
       closedDate?: string;
     };

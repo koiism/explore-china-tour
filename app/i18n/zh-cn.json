@@ -1,7 +1,23 @@
 {
+  "about-this-activity": "关于本次活动",
   "back": "返回",
+  "bottom-price": "低至",
+  "cancellation-policy": "取消政策",
+  "cancellation-policy-tips": "提前最多 {hours} 小时取消即可获得全额退款",
+  "cannot-cancel": "预订不可退款且无法更改。",
+  "check-availability": "查看余票",
+  "dollar": "$",
+  "enter-info": "输入信息",
   "explore-china": "探索中国",
   "explore-china-tour": "探索中国之旅",
+  "free-cancellation": "免费取消",
+  "free-ticket-policy": "免票政策",
+  "how-to-use-tickets": "门票使用方法",
+  "intro": "介绍",
   "no-locale": "当前文章没有{language}版本，默认展示英文版",
-  "not-found": "未找到"
+  "not-found": "未找到",
+  "notice": "注意",
+  "opening-time": "营业时间",
+  "per-person": "每人",
+  "what-to-bring": "需要带些什么"
 }

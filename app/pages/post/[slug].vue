@@ -13,7 +13,7 @@ const i18nStore = useI18nStore()
 <template>
   <div v-if="post">
     <SanityImage :asset-id="post?.mainImage?.asset?._ref" auto="format" h-82 w-full object-cover />
-    <div layout-md flex flex-col gap-2 px-4 py-10 text-align-left>
+    <div layout-xl flex flex-col gap-2 px-4 py-10 text-align-left>
       <h1 text-title>
         {{ post?.title }}
       </h1>

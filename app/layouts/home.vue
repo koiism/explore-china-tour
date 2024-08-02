@@ -1,7 +1,7 @@
 <template>
   <main class="dot-bg">
-    <Navigation />
-    <div relative px-10 py-24 text-center>
+    <LayoutNavigation />
+    <div relative px-4 py-20 text-center md:px-10 md:py-24>
       <slot />
     </div>
   </main>

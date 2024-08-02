@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <Logo />
+  <UiLogo />
 </template>
 
 <style scoped>

@@ -508,7 +508,7 @@
                 "value": {
                   "type": "object",
                   "attributes": {
-                    "starDate": {
+                    "startDate": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string"

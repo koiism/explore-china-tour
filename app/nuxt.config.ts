@@ -14,6 +14,9 @@ export default defineNuxtConfig({
     '~': Path.resolve('.'),
     'cms': Path.resolve('../cms'),
   },
+  devServer: {
+    host: '0.0.0.0',
+  },
   extends: [
     'nuxt-umami',
   ],
@@ -34,7 +37,29 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/seo',
     'nuxt-paypal',
+    '@nuxt/test-utils',
   ],
+  vite: {
+    vue: {
+      script: {
+        defineModel: true,
+      },
+    },
+  },
+  testUtils: {
+    startOnBoot: true,
+    logToConsole: true,
+    vitestConfig: {
+      setupFiles: ['./tests/setup/mocks'],
+      environmentOptions: {
+        nuxt: {
+          mock: {
+            indexedDb: true,
+          },
+        },
+      },
+    },
+  },
 
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -45,7 +70,7 @@ export default defineNuxtConfig({
   },
 
   css: [
-    '@unocss/reset/tailwind.css',
+    // '@unocss/reset/tailwind.css',
   ],
 
   colorMode: {
@@ -100,9 +125,10 @@ export default defineNuxtConfig({
 
   i18n: {
     vueI18n: './i18n.config.ts',
-    locales: ['en', 'zh-cn'],
+    locales: ['en'],
     defaultLocale: 'en',
     baseUrl,
+    detectBrowserLanguage: false,
   },
 
   sanity: {

@@ -9,4 +9,10 @@ export default nuxt(
       formatters: true,
     },
   ),
+  {
+    rules: {
+      'ts/no-use-before-define': 'off',
+      'vue/valid-attribute-name': 'off',
+    },
+  },
 )

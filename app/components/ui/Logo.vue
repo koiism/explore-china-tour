@@ -3,8 +3,8 @@ const localePath = useLocalePath()
 </script>
 
 <template>
-  <NuxtLink flex gap-2 :to="localePath('/')">
-    <div i-carbon-radar h-6 w-6 bg-black switch-animation dark:bg-green />
+  <NuxtLink :to="localePath('/')" flex items-center justify-center gap-2>
+    <div i-carbon-radar my-5 ml-5 mr-0 h-6 w-6 bg-black switch-animation md:ml-0 bg-primary />
     <div font-bold font-mono text-base>
       {{ $t('explore-china-tour') }}
     </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { queryPosts } from '~/sanity/queries'
+import { useQueryPostList } from '~/sanity/queries'
 
 definePageMeta({
   layout: 'home',
@@ -10,11 +10,12 @@ defineOgImageComponent('Nuxt', {
   description: 'Look what at me using the Nuxt template',
 })
 
-const { data } = await queryPosts()
+const { list, next } = useQueryPostList()
+next()
 </script>
 
 <template>
   <div layout-md flex flex-col gap-2>
-    <PostCard v-for="post in data || []" :key="post._id" :post="post" />
+    <BusinessPostCard v-for="post in list || []" :key="post._id" :post="post" />
   </div>
 </template>

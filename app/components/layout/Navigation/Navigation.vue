@@ -23,10 +23,12 @@ const classes = [
   <Teleport to="body">
     <div
       :class="showBg ? classes : []"
-      fixed top-0 z-899 h-20 w-screen flex items-center justify-between px-6 switch-animation
+      fixed top-0 z-899 h-20 w-full flex items-center justify-between switch-animation
     >
-      <NavigationLeft />
-      <NavigationRight />
+      <div layout-xl w-full flex items-center justify-between>
+        <LayoutNavigationLeft />
+        <LayoutNavigationRight />
+      </div>
     </div>
   </Teleport>
 </template>

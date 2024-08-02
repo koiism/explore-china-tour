@@ -1,27 +1,46 @@
-import type { Post } from 'cms/sanity.types'
-import groq from 'groq'
+import type { Category, City, Post, PriceOption, Product } from 'cms/sanity.types'
+import { generateQueryByProperty, generateQueryListGenerator } from './queryUtils'
 
-export const POSTS_QUERY = groq`*[_type == "post" && language == $language && defined(slug.current)] | order(publishedAt desc)`
-export async function queryPosts() {
-  const i18n = useI18n()
-  const sanity = useSanity()
+export const useQueryPostList = generateQueryListGenerator<Post>({
+  module: 'post',
+})
 
-  const res = await useAsyncData('posts', () => sanity.fetch<Post[]>(POSTS_QUERY, {
-    language: i18n.locale.value,
-  }))
+export const queryPostBySlug = generateQueryByProperty<Post>({
+  module: 'post',
+  propertyName: 'slug',
+  propertyPath: 'slug.current',
+})
 
-  return res
+export const queryPriceOptionById = generateQueryByProperty<PriceOption>({
+  module: 'priceOption',
+  propertyName: '_id',
+})
+
+type SafeType<T> = T extends undefined ? never : T
+export type TTicketOption = Omit<SafeType<Product['ticketOptions']> extends Array<infer T> ? T : never, 'priceOptions'> & {
+  priceOptions: PriceOption[]
 }
-
-export const POST_QUERY = groq`*[_type == "post" && slug.current == $slug && ( language == $language || language == 'en' )][0]`
-export async function queryPostBySlug(slug: string) {
-  const i18n = useI18n()
-  const sanity = useSanity()
-
-  const res = await useAsyncData('post', () => sanity.fetch<Post>(POST_QUERY, {
-    language: i18n.locale.value,
-    slug,
-  }))
-
-  return res
+export type TProduct = Omit<Product, 'category' | 'city' | 'image' | 'ticketOptions'> & {
+  category: Category
+  city: City
+  image: { url: string, alt: string }[]
+  ticketOptions: TTicketOption[]
 }
+export const queryProductBySlug = generateQueryByProperty<TProduct>({
+  module: 'product',
+  propertyName: 'slug',
+  propertyPath: 'slug.current',
+  getter: groq`{
+    ...,
+    "category": category->,
+    "city": city->,
+    "image": image[]{
+      "url": asset->url,
+      "alt": asset->altText,
+    },
+    "ticketOptions": ticketOptions[] {
+      ...,
+      "priceOptions": priceOptions[] ->
+    }
+  }`,
+})
