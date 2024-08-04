@@ -77,6 +77,14 @@ export default defineType({
       }) ],
     }),
     defineField({
+      name : 'userInfo',
+      title : 'User Info',
+      type : 'array',
+      of : [{type : 'string'}],
+      options :{list:['name', 'passport', 'birthday']},
+      initialValue:['name', 'passport', 'birthday']
+    }),
+    defineField({
       name : 'city',
       title : 'City',
       type : 'reference',
