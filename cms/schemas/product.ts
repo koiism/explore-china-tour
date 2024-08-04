@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
+const AT_LEAST_IMAGE_COUNT = 4;
+
 export default defineType({
   name: 'product',
   title: 'Product',
@@ -26,7 +28,10 @@ export default defineType({
       name: 'image',
       title: 'Image',
       type: 'array',
-      of: [ { type: 'image' } ]
+      of: [ { type: 'image' } ],
+      validation: (Rule) => {
+        return Rule.min(AT_LEAST_IMAGE_COUNT);
+      },
     }),
     defineField({
       name: 'ticketOptions',
@@ -60,7 +65,7 @@ export default defineType({
             fields :[
               defineField({ name: 'startDate', title : 'Start Date', type :'date' }),
               defineField({ name: 'endDate', title : 'End Date', type :'date' }),
-              defineField({ name: 'closedDate', title : 'Closed Date(Mon to Sun)', type : 'string' })
+              defineField({ name: 'closedDate', title : 'Closed Date(from sunday to saturday)', type : 'string' })
             ]
           }),
           defineField({
