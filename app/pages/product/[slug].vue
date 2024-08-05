@@ -53,7 +53,7 @@ const bookRoot = ref<HTMLElement>()
       <UBreadcrumb :links="links" hidden md:block />
       <section flex flex-col items-start justify-start gap-2>
         <UBadge color="gray" variant="solid" hidden md:block>
-          {{ product?.category?.name }}
+          {{ product.category.name }}
         </UBadge>
         <h1 text-title>
           {{ product?.title }}

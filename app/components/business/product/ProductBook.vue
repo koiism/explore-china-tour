@@ -1,90 +1,113 @@
 <script setup lang="ts">
+import { format } from 'date-fns'
 import type { TProduct, TTicketOption } from '~/sanity/queries'
 
 const props = defineProps<{
   product: TProduct
 }>()
 const cart = ref<ICart>(defaultCart.value)
+cart.value.productId = props.product._id
 provide(CART_KEY, cart)
-const selectedTicketOption = computed<TTicketOption | undefined>(() => {
-  return cart.value.selectedTicketOption
-    ? props.product.ticketOptions.find(option => option.title === cart.value.selectedTicketOption)
+const ticketName = computed<TTicketOption | undefined>(() => {
+  return cart.value.ticketName
+    ? props.product.ticketOptions.find(option => option.title === cart.value.ticketName)
     : undefined
 })
 const options = computed(() => {
-  return selectedTicketOption.value?.entryTime?.map(time => ({
+  return ticketName.value?.entryTime?.map(time => ({
     label: time,
     value: time,
   }))
 })
 watch(options, () => {
   if (options.value?.length) {
-    cart.value.selectedEntryTime = options.value[0].value
+    cart.value.planTime = options.value[0].value
   }
 })
 const enableBook = computed(() => {
-  return cart.value.date && cart.value.selectedTicketOption && cart.value.selectedEntryTime && cart.value.tickets?.length
+  return cart.value.planDate && cart.value.ticketName && cart.value.planTime && cart.value.priceInfo?.length
 })
 const target = useParentElement()
 const targetIsVisible = useElementVisibility(target)
-function checkAvailability() {
+function goCheckAvailability() {
   target.value?.scrollIntoView({ behavior: 'smooth' })
+}
+const sb = useSupabase()
+const isCheckingAvailability = ref(false)
+const router = useRouter()
+async function checkAvailability() {
+  if (isCheckingAvailability.value || !cart.value.planDate || !cart.value.ticketName || !cart.value.planTime || !cart.value.priceInfo?.length) {
+    return
+  }
+  isCheckingAvailability.value = true
+  const { data: order } = await sb.from('order').insert({
+    ...cart.value,
+    planDate: format(cart.value.planDate, 'yyyy-MM-dd'),
+  }).select()
+  if (order?.[0]) {
+    const { orderId } = order[0]
+    router.push(`/confirm/${orderId}`)
+  }
+  isCheckingAvailability.value = false
 }
 </script>
 
 <script lang="ts">
 export const CART_KEY = Symbol('cart')
-export const defaultCart = ref({
-  date: undefined,
-  selectedTicketOption: undefined,
-  selectedEntryTime: undefined,
-  tickets: [],
+export const defaultCart: Ref<ICart> = ref({
+  productId: undefined,
+  planDate: undefined,
+  planTime: undefined,
+  ticketName: undefined,
+  priceInfo: [],
 })
 export interface ITicket {
   priceOptionId?: string
   quantity?: number
   price?: number
+  title?: string
 }
 export interface ICart {
-  date?: Date
-  selectedTicketOption?: string
-  selectedEntryTime?: string
-  tickets?: ITicket[]
+  productId?: string
+  planDate?: Date
+  planTime?: string
+  ticketName?: string
+  priceInfo: Required<ITicket>[]
 }
 </script>
 
 <template>
   <UiSection v-if="product?.ticketOptions" :title="$t('book-now')">
     <UiSectionCard :title="$t('please-select-the-date')">
-      <UiDateSelectBtn v-model="cart.date" />
+      <UiDateSelectBtn v-model="cart.planDate" />
     </UiSectionCard>
     <Transition name="slide-fade">
-      <UiSectionCard v-show="cart.date" :title="$t('please-select-a-ticket-option')">
-        <BusinessProductTicketOptionGroup :options="product.ticketOptions" :date="cart.date" />
+      <UiSectionCard v-show="cart.planDate" :title="$t('please-select-a-ticket-option')">
+        <BusinessProductTicketOptionGroup :options="product.ticketOptions" />
       </UiSectionCard>
     </Transition>
     <Transition name="slide-fade">
-      <BusinessProductSelectedTicketOptionInfo v-show="cart.selectedTicketOption" :options="product.ticketOptions" />
+      <BusinessProductticketNameInfo v-show="cart.ticketName" :options="product.ticketOptions" />
     </Transition>
     <Transition name="slide-fade">
-      <UiSectionCard v-show="cart.selectedTicketOption" :title="$t('select-an-entry-time')">
-        <URadioGroup v-model="cart.selectedEntryTime" :options="options" />
+      <UiSectionCard v-show="cart.ticketName" :title="$t('select-an-entry-time')">
+        <URadioGroup v-model="cart.planTime" :options="options" />
       </UiSectionCard>
     </Transition>
     <Transition name="slide-fade">
-      <UiSectionCard v-show="cart.selectedTicketOption" :title="$t('select-number-of-people')">
-        <BusinessProductTicketsSelector v-model="cart.tickets" :options="product.ticketOptions" />
+      <UiSectionCard v-show="cart.ticketName" :title="$t('select-number-of-people')">
+        <BusinessProductTicketsSelector v-model="cart.priceInfo" :options="product.ticketOptions" />
       </UiSectionCard>
     </Transition>
     <div w-full flex items-center justify-center p-2 md:p-4>
-      <UButton :color="enableBook ? 'primary' : 'gray'" variant="solid" :disabled="!enableBook" block :ui="{ rounded: 'rounded-full', font: 'font-bold' }">
+      <UButton :color="enableBook ? 'primary' : 'gray'" variant="solid" :disabled="!enableBook" block :ui="{ rounded: 'rounded-full', font: 'font-bold' }" :loading="isCheckingAvailability" @click="checkAvailability">
         {{ $t('check-availability') }}
       </UButton>
     </div>
     <Teleport to="body">
       <Transition name="slide-down">
         <div v-if="!targetIsVisible" fixed bottom-0 left-0 right-0 z-10 flex items-center justify-center p-4 md:hidden bg-base>
-          <UButton :ui="{ rounded: 'rounded-full', font: 'font-bold' }" block @click="checkAvailability">
+          <UButton :ui="{ rounded: 'rounded-full', font: 'font-bold' }" block @click="goCheckAvailability">
             {{ $t('check-availability') }}
           </UButton>
         </div>

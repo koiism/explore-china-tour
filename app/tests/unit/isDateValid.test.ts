@@ -7,6 +7,11 @@ describe('isDateValid', () => {
     expect(isDateValid(undefined, undefined, targetDate)).toBe(true)
   })
 
+  it('should return false if start and or dates are not provided and is on a closed day', () => {
+    const targetDate = '2021-06-15'
+    expect(isDateValid(undefined, undefined, targetDate, '0000000')).toBe(false)
+  })
+
   it('should return true when targetDate is on a closed day', () => {
     expect(isDateValid('2022-01-01', '2022-01-31', '2022-01-02', '0111111')).toBe(false)
   })

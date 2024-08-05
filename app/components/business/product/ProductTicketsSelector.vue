@@ -7,21 +7,32 @@ import type { TTicketOption } from '~/sanity/queries'
 const props = defineProps<{
   options: TTicketOption[]
 }>()
-const model = defineModel<ITicket[]>()
+const model = defineModel<Required<ITicket>[]>()
 const cart = useCart()
-const selectedTicketOption = computed(() => props.options.find(o => o.title === cart.value.selectedTicketOption))
+const ticketName = computed(() => props.options.find(o => o.title === cart.value.ticketName))
 const priceOptions = ref<(Required<ITicket> & PriceOption)[]>([])
-watch(selectedTicketOption, () => {
-  priceOptions.value = selectedTicketOption.value?.priceOptions.map(o => ({ ...o, priceOptionId: o._id, quantity: 0, price: o.price! })) ?? []
+watch(ticketName, () => {
+  priceOptions.value = ticketName.value?.priceOptions.map(o => ({
+    ...o,
+    priceOptionId: o._id,
+    quantity: 0,
+    price: o.price!,
+    title: o.title!,
+  })) ?? []
 })
 watchEffect(() => {
-  model.value = priceOptions.value.filter(o => o?.quantity).map(o => ({ priceOptionId: o._id, quantity: o.quantity, price: o.price }))
+  model.value = priceOptions.value.filter(o => o?.quantity).map(o => ({
+    priceOptionId: o._id,
+    quantity: o.quantity,
+    price: o.price,
+    title: o.title,
+  }))
 })
 const totalPrice = computed(() => priceOptions.value.reduce((acc, cur) => acc + (cur.price * cur.quantity), 0))
 </script>
 
 <template>
-  <div v-if="selectedTicketOption?.priceOptions" flex flex-col gap-2>
+  <div v-if="ticketName?.priceOptions" flex flex-col gap-2>
     <div v-for="option in priceOptions" :key="option.name" w-full flex items-center justify-between gap-2>
       <div flex flex-1 flex-col>
         <div text-subtitle>
@@ -34,7 +45,7 @@ const totalPrice = computed(() => priceOptions.value.reduce((acc, cur) => acc + 
       <div v-if="option.price" flex flex-none items-center justify-between gap-2>
         <UButtonGroup>
           <UButton icon="i-carbon-subtract" :disabled="option.quantity <= 0" @click="option.quantity--" />
-          <UInput v-model="option.quantity" type="number" disabled :min="0" :max="9" w-4 text-center />
+          <UInput v-model="option.quantity" type="number" disabled :min="0" :max="9" w-auto text-center />
           <UButton icon="i-carbon-add" @click="option.quantity++" />
         </UButtonGroup>
       </div>

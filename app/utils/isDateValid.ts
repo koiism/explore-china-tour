@@ -1,5 +1,5 @@
 export function isDateValid(startDate?: string, endDate?: string, targetDate?: string, closedDay: string = '1111111'): boolean {
-  if (!startDate || !endDate || !targetDate) {
+  if (!targetDate) {
     return true
   }
   const closedDateSign = Number(`0b${closedDay}`)
@@ -7,6 +7,9 @@ export function isDateValid(startDate?: string, endDate?: string, targetDate?: s
   const isClosed = (closedDateSign & currentDaySign) === 0
   if (isClosed) {
     return false
+  }
+  if (!startDate || !endDate) {
+    return true
   }
   const extractMonthDay = (dateStr: string): string => {
     return dateStr.split('-').slice(1).join('-')

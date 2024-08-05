@@ -11,7 +11,7 @@ const DAYS = [t('sunday'), t('monday'), t('tuesday'), t('wednesday'), t('thursda
 
 const cart = useCart()
 
-const option = computed(() => props.options.find(o => o.title === cart.value.selectedTicketOption))
+const option = computed(() => props.options.find(o => o.title === cart.value.ticketName))
 function formatDate(dateStr?: string) {
   if (!dateStr) {
     return ''
@@ -35,7 +35,7 @@ const closedDays = computed(() => {
       {{ option.description }}
     </UiSectionCard>
     <UiSectionCard :title="$t('valid-date')">
-      {{ $t('from-mm-dd-to-mm-dd', { start: formatDate(option.dateRange?.startDate), end: formatDate(option.dateRange?.endDate) }) }}
+      {{ $t('from-mm-dd-to-mm-dd', { start: formatDate(option.dateRange?.startDate ?? '2024-01-01'), end: formatDate(option.dateRange?.endDate ?? '2024-12-31') }) }}
     </UiSectionCard>
     <UiSectionCard v-if="closedDays.length" :title="$t('closed-days')">
       {{ $t('closed-on') }}{{ closedDays.join(', ') }}

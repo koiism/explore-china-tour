@@ -18,13 +18,13 @@ function checkAvailability() {
   <aside flex-none>
     <div relative flex items-center gap-4 p-8 before:absolute before:left-0 before:top-0 before:h-1 before:w-full card-base before:bg-primary before:content-empty>
       <div flex flex-col items-start justify-start gap-0>
-        <div text-base>
+        <div text-common>
           {{ $t('bottom-price') }}
         </div>
         <div text-subtitle>
           {{ $t('dollar') }} {{ minimumPrice.toFixed(2) }}
         </div>
-        <div text-base>
+        <div text-common>
           {{ $t('per-person') }}
         </div>
       </div>

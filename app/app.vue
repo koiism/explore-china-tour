@@ -53,6 +53,7 @@ html.dark {
   --dot-mask-color: red;
 }
 .dot-bg::before {
+  z-index: -1;
   content: '';
   position: absolute;
   inset: 0;

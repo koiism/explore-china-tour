@@ -13,7 +13,7 @@ defineProps<{
   <UiSection v-if="product?.openingTime?.length" icon="i-carbon-time" :title="$t('opening-time')">
     <ul flex flex-col gap-2>
       <li v-for="(time, index) in product?.openingTime" :key="index">
-        <h3 font-bold text-base>
+        <h3 font-bold text-common>
           {{ time.desc }}
         </h3>
         <div text-p>

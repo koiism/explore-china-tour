@@ -6,6 +6,8 @@ const sanityProjectId = process.env.SANITY_STUDIO_PROJECT_ID!
 const sanityToken = process.env.SANITY_STUDIO_TOKEN!
 const sanityStudioUrl = process.env.SANITY_VISUAL_EDITING_STUDIO_URL
 const sanityDataset = process.env.NUXT_SANITY_DATASET!
+const supabaseUrl = process.env.SUPABASE_URL!
+const supabaseKey = process.env.SUPABASE_KEY!
 const paypalClientId = process.env.PAYPAL_CLIENT_ID!
 const baseUrl = process.env.APP_BASE_URL!
 
@@ -38,6 +40,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     'nuxt-paypal',
     '@nuxt/test-utils',
+    '@nuxtjs/supabase',
   ],
   vite: {
     vue: {
@@ -45,6 +48,11 @@ export default defineNuxtConfig({
         defineModel: true,
       },
     },
+  },
+  supabase: {
+    url: supabaseUrl,
+    key: supabaseKey,
+    redirect: false,
   },
   testUtils: {
     startOnBoot: true,

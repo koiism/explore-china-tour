@@ -9,7 +9,7 @@ defineProps<{
   <section w-full flex gap-2>
     <div v-if="icon" :class="[icon]" h-7 w-5 flex-none md:h-8 md:w-6 />
     <div w-full flex flex-col gap-1>
-      <h2 text-start text-xl font-bold md:text-2xl text-base :class="[icon ? '' : 'text-section-title']">
+      <h2 text-start text-xl font-bold md:text-2xl text-common :class="[icon ? '' : 'text-section-title']">
         {{ title }}
       </h2>
       <div w-full text-start text-p>

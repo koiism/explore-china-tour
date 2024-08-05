@@ -69,6 +69,7 @@ export type PriceOption = {
   _rev: string;
   name?: string;
   price?: number;
+  title?: "Adult" | "Kid" | "Senior" | "Minor" | "General";
   ticketApplicability?: string;
 };
 
@@ -111,6 +112,7 @@ export type Product = {
     _type: "ticketOption";
     _key: string;
   }>;
+  userInfo?: Array<string>;
   city?: {
     _ref: string;
     _type: "reference";

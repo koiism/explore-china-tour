@@ -1,7 +1,8 @@
 import { Buffer } from 'node:buffer'
 import process from 'node:process'
+import type { PriceOption } from 'cms/sanity.types'
+import { useSanity } from '#imports'
 import type { ICart } from '~/components/business/product/ProductBook.vue'
-import { queryPriceOptionById } from '~/sanity/queries'
 
 const base = 'https://api-m.paypal.com'
 const paypalClientSecret = process.env.PAYPAL_CLIENT_SECRET!
@@ -31,25 +32,35 @@ async function generateAccessToken() {
   }
 }
 
+async function queryPriceOptionById(id: string) {
+  const sanity = useSanity()
+  const priceOption = await sanity.fetch(
+    `*[_type == "priceOption" && _id == "${id}"][0] {
+      ...
+    }`,
+  )
+  return priceOption
+}
+
 async function createOrder(cart: ICart) {
-  const tickets = cart.tickets
-  if (!tickets?.length) {
+  const priceInfo = cart.priceInfo
+  if (!priceInfo?.length) {
     throw new Error('MISSING_CART_DATA')
   }
   const accessToken = await generateAccessToken()
   const url = `${base}/v2/checkout/orders`
   let amount = 0
-  for (const ticket of tickets) {
+  for (const price of priceInfo) {
     try {
-      if (!ticket?.priceOptionId || !ticket?.quantity) {
+      if (!price?.priceOptionId || !price?.quantity) {
         break
       }
-      const priceOption = await queryPriceOptionById(ticket.priceOptionId)
-      amount = priceOption.price * ticket.quantity
+      const priceOption = await queryPriceOptionById(price.priceOptionId)
+      amount = priceOption.price * price.quantity
     }
     catch (e: any) {
       console.error(e)
-      throw new Error('create order failed')
+      throw new Error(e)
     }
   }
 

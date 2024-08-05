@@ -337,6 +337,35 @@
         },
         "optional": true
       },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "union",
+          "of": [
+            {
+              "type": "string",
+              "value": "Adult"
+            },
+            {
+              "type": "string",
+              "value": "Kid"
+            },
+            {
+              "type": "string",
+              "value": "Senior"
+            },
+            {
+              "type": "string",
+              "value": "Minor"
+            },
+            {
+              "type": "string",
+              "value": "General"
+            }
+          ]
+        },
+        "optional": true
+      },
       "ticketApplicability": {
         "type": "objectAttribute",
         "value": {
@@ -596,6 +625,16 @@
                 }
               }
             }
+          }
+        },
+        "optional": true
+      },
+      "userInfo": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "array",
+          "of": {
+            "type": "string"
           }
         },
         "optional": true

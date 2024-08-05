@@ -26,21 +26,27 @@ export type TProduct = Omit<Product, 'category' | 'city' | 'image' | 'ticketOpti
   image: { url: string, alt: string }[]
   ticketOptions: TTicketOption[]
 }
+const productGetter = groq`{
+  ...,
+  "category": category->,
+  "city": city->,
+  "image": image[]{
+    "url": asset->url,
+    "alt": asset->altText,
+  },
+  "ticketOptions": ticketOptions[] {
+    ...,
+    "priceOptions": priceOptions[] ->
+  }
+}`
 export const queryProductBySlug = generateQueryByProperty<TProduct>({
   module: 'product',
   propertyName: 'slug',
   propertyPath: 'slug.current',
-  getter: groq`{
-    ...,
-    "category": category->,
-    "city": city->,
-    "image": image[]{
-      "url": asset->url,
-      "alt": asset->altText,
-    },
-    "ticketOptions": ticketOptions[] {
-      ...,
-      "priceOptions": priceOptions[] ->
-    }
-  }`,
+  getter: productGetter,
+})
+export const queryProductById = generateQueryByProperty<TProduct>({
+  module: 'product',
+  propertyName: '_id',
+  getter: productGetter,
 })

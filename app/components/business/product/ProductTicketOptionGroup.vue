@@ -8,10 +8,10 @@ const props = defineProps<{
 }>()
 const cart = useCart()
 function isTicketAvailable(option: TTicketOption) {
-  if (!cart.value.date) {
+  if (!cart.value.planDate) {
     return false
   }
-  const dateStr = cart.value.date ? format(cart.value.date, 'yyyy-MM-dd') : ''
+  const dateStr = cart.value.planDate ? format(cart.value.planDate, 'yyyy-MM-dd') : ''
   return isDateValid(option.dateRange?.startDate, option.dateRange?.endDate, dateStr, option.dateRange?.closedDate)
 }
 

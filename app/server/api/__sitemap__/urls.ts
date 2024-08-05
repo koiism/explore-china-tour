@@ -17,7 +17,7 @@ async function getSlugs(contentName: string) {
 
 export default defineSitemapEventHandler(async () => {
   const sitemap: string[] = []
-  const contents = ['post', 'product']
+  const contents = ['product']
   for (const content of contents) {
     const urls = await getSlugs(content)
     sitemap.push(...urls)

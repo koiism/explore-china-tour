@@ -9,15 +9,15 @@ const props = defineProps<{
 }>()
 const cart = useCart()
 const isSelected = computed(() => {
-  return cart.value.selectedTicketOption === props.option.title
+  return cart.value.ticketName === props.option.title
 })
 watch(() => props.disable, () => {
   if (props.disable && isSelected.value) {
-    cart.value.selectedTicketOption = undefined
+    cart.value.ticketName = undefined
   }
 })
 function onTicketSelected(option: TTicketOption) {
-  cart.value.selectedTicketOption = option.title
+  cart.value.ticketName = option.title
 }
 const color = computed(() => {
   return isSelected.value ? 'primary' : 'white'
