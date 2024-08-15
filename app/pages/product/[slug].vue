@@ -52,8 +52,8 @@ const bookRoot = ref<HTMLElement>()
       </UCarousel>
       <UBreadcrumb :links="links" hidden md:block />
       <section flex flex-col items-start justify-start gap-2>
-        <UBadge color="gray" variant="solid" hidden md:block>
-          {{ product.category.name }}
+        <UBadge v-if=" product?.category?.name" color="gray" variant="solid" hidden md:block>
+          {{ product?.category?.name }}
         </UBadge>
         <h1 text-title>
           {{ product?.title }}
@@ -70,6 +70,9 @@ const bookRoot = ref<HTMLElement>()
         <BusinessProductCheckAvailability :product="product" :target-element="bookRoot" hidden md:block />
       </section>
     </div>
+  </div>
+  <div v-else>
+    <UiNotFound />
   </div>
 </template>
 

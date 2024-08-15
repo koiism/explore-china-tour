@@ -1,4 +1,5 @@
 {
+  "Oops": "Oops!",
   "about-this-activity": "About this activity",
   "at": "at",
   "back": "Back",
@@ -41,6 +42,7 @@
   "no-locale": "There is no {language} version of the current article, and the English version is displayed by default",
   "not-allowed": "Not Allowed",
   "not-found": "Not Found",
+  "not-found-hint": "Current page not found.",
   "notice": "Notice",
   "opening-time": "Opening Time",
   "order-summary": "Order summary",

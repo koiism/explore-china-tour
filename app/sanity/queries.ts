@@ -39,6 +39,30 @@ const productGetter = groq`{
     "priceOptions": priceOptions[] ->
   }
 }`
+export interface TProductCard {
+  _id: string
+  category: Category
+  city: City
+  title: string
+  image: { url: string, alt: string }
+  slug: string
+  ticketOptions: TTicketOption[]
+}
+const productCardGetter = groq`{
+  "_id": _id,
+  "category": category->,
+  "city": city->,
+  "title": title,
+  "image": image[]{
+    "url": asset->url,
+    "alt": asset->altText,
+  }[0],
+  "slug": slug.current,
+  "ticketOptions": ticketOptions[] {
+    ...,
+    "priceOptions": priceOptions[] ->
+  }
+}`
 export const queryProductBySlug = generateQueryByProperty<TProduct>({
   module: 'product',
   propertyName: 'slug',
@@ -49,4 +73,9 @@ export const queryProductById = generateQueryByProperty<TProduct>({
   module: 'product',
   propertyName: '_id',
   getter: productGetter,
+})
+
+export const useQueryProductList = generateQueryListGenerator<TProductCard>({
+  module: 'product',
+  getter: productCardGetter,
 })

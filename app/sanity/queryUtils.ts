@@ -43,7 +43,7 @@ export function generateQueryListGenerator<T extends Record<string, any>>({
 }: IParamsQueryList) {
   const queryString = groq`*[
     _type == "${module}" &&
-    language == $language  && (
+    (language == $language || language == 'en' || language == null) && (
       ${orderby} > $orderbyValue
       || (${orderby} == $orderbyValue && _id > $lastId)
     )

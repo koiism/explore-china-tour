@@ -13,7 +13,7 @@ defineProps<{
   >
     <div layout-xl w-full flex items-center justify-between>
       <LayoutNavigationLeft />
-      <div absolute bottom-0 left-0 right-0 top-0 mx-auto max-w-120 flex items-center justify-center>
+      <div bottom-0 left-0 right-0 top-0 max-w-120 flex flex-1 items-center justify-center md:absolute md:mx-auto>
         <UiSteps
           :steps="steps" :current="current"
         />

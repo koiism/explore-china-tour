@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <section grid-cols-4 grid-rows-2 hidden h-80 max-h-sm gap-2 md:grid>
+  <section grid-cols-4 grid-rows-2 hidden h-80 max-h-sm w-full gap-2 md:grid>
     <div grid-col-start-1 grid-row-start-1 grid-col-end-3 grid-row-end-3 overflow-hidden rounded>
       <img :src="images?.[0]?.url" :alt="images?.[0]?.alt" h-full w-full object-cover>
     </div>

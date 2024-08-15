@@ -43,7 +43,7 @@ const formSchema = z.object({
   data: z.array(productRequiredData),
 })
 type TForm = Partial<z.infer<typeof formSchema>>
-const initData = (order?.priceInfo as ITicket[]).reduce((acc, cur) => {
+const initData = (order?.priceInfo as ITicket[])?.reduce((acc, cur) => {
   return acc.concat(Array.from({ length: cur.quantity ?? 0 }).map((_, i) => {
     return {
       title: `${cur.title} ${i + 1}`,
@@ -106,7 +106,7 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
           <div flex gap-4>
             <img :src="product?.image?.[0]?.url" h-20 w-20 rounded-xl object-cover>
             <div flex flex-col gap-1>
-              <div font-bold text-base>
+              <div text-base font-bold>
                 <UBadge color="gray" variant="solid">
                   {{ product?.category.name }}
                 </UBadge>
@@ -163,6 +163,9 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
         <BusinessPaypalButton :cart="(order as unknown as ICart)" w-full />
       </div>
     </div>
+  </main>
+  <main v-else>
+    <UiNotFound />
   </main>
 </template>
 

@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 
 const AT_LEAST_IMAGE_COUNT = 4;
+const AT_LEAST_TICKET_OPTIONS_COUNT = 1;
 
 export default defineType({
   name: 'product',
@@ -30,7 +31,7 @@ export default defineType({
       type: 'array',
       of: [ { type: 'image' } ],
       validation: (Rule) => {
-        return Rule.min(AT_LEAST_IMAGE_COUNT);
+        return Rule.min(AT_LEAST_IMAGE_COUNT).required();
       },
     }),
     defineField({
@@ -80,14 +81,17 @@ export default defineType({
             }) ]
           }) ],
       }) ],
+      validation: (Rule) => {
+        return Rule.min(AT_LEAST_TICKET_OPTIONS_COUNT).required();
+      },
     }),
     defineField({
       name : 'userInfo',
       title : 'User Info',
       type : 'array',
-      of : [{type : 'string'}],
-      options :{list:['name', 'passport', 'birthday']},
-      initialValue:['name', 'passport', 'birthday']
+      of : [ { type : 'string' } ],
+      options :{ list:[ 'name', 'passport', 'birthday' ] },
+      initialValue:[ 'name', 'passport', 'birthday' ]
     }),
     defineField({
       name : 'city',
