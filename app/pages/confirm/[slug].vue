@@ -80,7 +80,7 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
         <h1 text-subtitle>
           {{ $t('fill-in-the-following-so-we-can-accommodate-you') }}
         </h1>
-        <div v-for="(option, index) in form.data" :key="index" flex flex-col gap-2 p-2 card-base md:p-4>
+        <div v-for="(option, index) in form.data" :key="index" flex flex-col gap-2 overflow-visible p-2 card-base md:p-4>
           <h2 font-bold>
             {{ option.title }}
           </h2>

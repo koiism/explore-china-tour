@@ -17,6 +17,22 @@ describe('getMinimumPriceFromTicketOptions', () => {
     expect(minPrice).toEqual(5)
   })
 
+  it('should return the minimum price without zero', () => {
+    const ticketOptions: TTicketOptions = [
+      {
+        priceOptions: [
+          { price: 10 },
+          { price: 5 },
+          { price: 0 },
+        ],
+      },
+    ]
+
+    const minPrice = getMinimumPriceFromTicketOptions(ticketOptions)
+
+    expect(minPrice).toEqual(5)
+  })
+
   it('should handle empty ticketOptions', () => {
     const ticketOptions: TTicketOptions = []
 
@@ -37,34 +53,20 @@ describe('getMinimumPriceFromTicketOptions', () => {
     expect(minPrice).toEqual(Infinity)
   })
 
-  it('should handle all zero prices', () => {
-    const ticketOptions: TTicketOptions = [
-      {
-        priceOptions: [
-          { price: 0 },
-          { price: 0 },
-        ],
-      },
-    ]
-
-    const minPrice = getMinimumPriceFromTicketOptions(ticketOptions)
-
-    expect(minPrice).toEqual(0)
-  })
-
-  it('should handle negative prices', () => {
+  it('should not return negative prices', () => {
     const ticketOptions: TTicketOptions = [
       {
         priceOptions: [
           { price: -10 },
           { price: -5 },
+          { price: 0 },
         ],
       },
     ]
 
     const minPrice = getMinimumPriceFromTicketOptions(ticketOptions)
 
-    expect(minPrice).toEqual(-10)
+    expect(minPrice).toEqual(Infinity)
   })
 
   it('should handle large prices', () => {
@@ -110,7 +112,7 @@ describe('getMinimumPriceFromTicketOptions', () => {
 
     const minPrice = getMinimumPriceFromTicketOptions(ticketOptions)
 
-    expect(minPrice).toEqual(-5)
+    expect(minPrice).toEqual(10)
   })
 
   it('should handle different priceOptions lengths', () => {

@@ -42,7 +42,7 @@ const totalPrice = computed(() => priceOptions.value.reduce((acc, cur) => acc + 
           {{ option.ticketApplicability }}
         </div>
       </div>
-      <div v-if="option.price" flex flex-none items-center justify-between gap-2>
+      <div flex flex-none items-center justify-between gap-2>
         <UButtonGroup>
           <UButton icon="i-carbon-subtract" :disabled="option.quantity <= 0" @click="option.quantity--" />
           <UInput v-model="option.quantity" type="number" disabled :min="0" :max="9" w-auto text-center />

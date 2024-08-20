@@ -52,14 +52,14 @@ export function generateQueryListGenerator<T extends Record<string, any>>({
     let lastId: string | null = ''
     let orderbyValue = ''
     const list = ref<T[]>([]) as Ref<T[]>
+    const i18n = useI18n()
     async function next() {
       if (lastId === null) {
         return [] as T[]
       }
-      const i18n = useI18n()
       const sanity = useSanity()
 
-      const res = await useAsyncData(module, () => sanity.fetch<T[]>(queryString, {
+      const res = await useAsyncData(() => sanity.fetch<T[]>(queryString, {
         language: i18n.locale.value,
         lastId,
         orderbyValue,
@@ -67,7 +67,7 @@ export function generateQueryListGenerator<T extends Record<string, any>>({
       const data = res.data.value
       if (data) {
         if (data.length > 0) {
-          orderbyValue = data[data.length - 1][orderby]
+          orderbyValue = data[data.length - 1][orderby] || ''
           lastId = data[data.length - 1]._id
           list.value.push(...data)
         }

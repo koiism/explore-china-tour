@@ -4,7 +4,7 @@ import type { PriceOption } from 'cms/sanity.types'
 import { useSanity } from '#imports'
 import type { ICart } from '~/components/business/product/ProductBook.vue'
 
-const base = 'https://api-m.paypal.com'
+const base = process.env.PAYPAL_BASE_URL!
 const paypalClientSecret = process.env.PAYPAL_CLIENT_SECRET!
 const paypalClientId = process.env.PAYPAL_CLIENT_ID!
 

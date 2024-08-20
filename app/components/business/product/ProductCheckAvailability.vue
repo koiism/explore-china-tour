@@ -5,10 +5,7 @@ const props = defineProps<{
   product: TProduct
   targetElement?: HTMLElement
 }>()
-const minimumPrice = computed(() => Math.min(...props.product.ticketOptions.map((option) => {
-  const price = Math.min(...option.priceOptions.map(priceOption => priceOption.price!))
-  return price
-})))
+const minimumPrice = getMinimumPriceFromTicketOptions(props.product.ticketOptions)
 function checkAvailability() {
   props.targetElement?.scrollIntoView({ behavior: 'smooth' })
 }

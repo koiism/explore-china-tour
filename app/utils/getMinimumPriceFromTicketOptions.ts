@@ -9,7 +9,7 @@ export function getMinimumPriceFromTicketOptions(ticketOptions?: TTicketOptions)
   }
 
   return Math.min(...ticketOptions.map((option) => {
-    const price = Math.min(...option.priceOptions.map(priceOption => priceOption.price!))
+    const price = Math.min(...option.priceOptions.map(priceOption => priceOption.price!).filter(n => n > 0))
     return price
   }))
 }

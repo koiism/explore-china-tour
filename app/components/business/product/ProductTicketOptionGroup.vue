@@ -20,7 +20,9 @@ const ticketOptions = computed(() => {
     return isTicketAvailable(option)
   }).concat(props.options.filter((option) => {
     return !isTicketAvailable(option)
-  }))
+  })).filter((option, index, array) => {
+    return array.findIndex(o => o.title === option.title) === index
+  })
 })
 </script>
 

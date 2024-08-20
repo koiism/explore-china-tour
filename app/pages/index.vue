@@ -6,7 +6,7 @@ definePageMeta({
 })
 
 const { list, next } = useQueryProductList()
-next()
+await next()
 </script>
 
 <template>
@@ -27,9 +27,9 @@ next()
             </RouterLink>
           </div>
         </div>
-        <div flex items-center justify-center p-2 text-card-title>
+        <div flex flex-wrap items-center justify-center p-2 text-nowrap text-card-title>
           {{ $t('bottom-price') }}
-          <span mx-2 text-primary>
+          <span mx-2 text-nowrap text-primary>
             {{ $t('dollar') }}
             {{ getMinimumPriceFromTicketOptions(product.ticketOptions) }}
           </span>

@@ -50,6 +50,7 @@ export interface TProductCard {
 }
 const productCardGetter = groq`{
   "_id": _id,
+  "_updatedAt": _updatedAt,
   "category": category->,
   "city": city->,
   "title": title,
