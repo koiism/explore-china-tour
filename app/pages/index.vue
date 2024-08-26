@@ -12,7 +12,7 @@ await next()
 <template>
   <div layout-xl flex flex-row flex-wrap gap-0>
     <div v-for="product in list" :key="product._id" w-full p-1 text-start md:p-2 class="md:w-[33.33%]">
-      <div relative h-full flex flex-col justify-between card-base>
+      <div card-base relative h-full flex flex-col justify-between>
         <div h-full>
           <UBadge absolute left-2 top-2 color="gray" font-bold>
             {{ product.city.name }}
@@ -21,15 +21,15 @@ await next()
           <div p-2 md:p-4>
             <RouterLink
               :to="`/product/${product.slug}`"
-              before:absolute before:left-0 before:top-0 before:h-full before:w-full text-card-title before:content-empty
+              text-card-title before:absolute before:left-0 before:top-0 before:h-full before:w-full before:content-empty
             >
               {{ product.title }}
             </RouterLink>
           </div>
         </div>
-        <div flex flex-wrap items-center justify-center p-2 text-nowrap text-card-title>
+        <div text-card-title flex flex-wrap items-center justify-center p-2 text-nowrap>
           {{ $t('bottom-price') }}
-          <span mx-2 text-nowrap text-primary>
+          <span text-primary mx-2 text-nowrap>
             {{ $t('dollar') }}
             {{ getMinimumPriceFromTicketOptions(product.ticketOptions) }}
           </span>

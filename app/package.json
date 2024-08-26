@@ -23,9 +23,11 @@
     "@iconify-json/iconoir": "^1.1.46",
     "@portabletext/vue": "^1.0.11",
     "@sanity/client": "^6.21.0",
+    "@trpc/client": "^10.45.2",
     "@vitest/ui": "^2.0.5",
     "date-fns": "^3.6.0",
     "groq": "^3.51.0",
+    "trpc-nuxt": "^0.10.22",
     "v-calendar": "^3.1.2",
     "vitest": "^2.0.5",
     "zod": "^3.23.8"

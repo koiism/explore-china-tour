@@ -47,6 +47,7 @@ const initData = (order?.priceInfo as ITicket[])?.reduce((acc, cur) => {
   return acc.concat(Array.from({ length: cur.quantity ?? 0 }).map((_, i) => {
     return {
       title: `${cur.title} ${i + 1}`,
+      ticketType: cur.title,
     }
   }))
 }, [] as TProductRequiredData[])
@@ -80,7 +81,7 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
         <h1 text-subtitle>
           {{ $t('fill-in-the-following-so-we-can-accommodate-you') }}
         </h1>
-        <div v-for="(option, index) in form.data" :key="index" flex flex-col gap-2 overflow-visible p-2 card-base md:p-4>
+        <div v-for="(option, index) in form.data" :key="index" card-base flex flex-col gap-2 overflow-visible p-2 md:p-4>
           <h2 font-bold>
             {{ option.title }}
           </h2>
@@ -102,7 +103,7 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
         <h1 text-subtitle>
           {{ $t('order-summary') }}
         </h1>
-        <div flex flex-col gap-2 rounded-xl p-2 card-base md:p-4>
+        <div card-base flex flex-col gap-2 rounded-xl p-2 md:p-4>
           <div flex gap-4>
             <img :src="product?.image?.[0]?.url" h-20 w-20 rounded-xl object-cover>
             <div flex flex-col gap-1>
@@ -156,7 +157,7 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
       </div>
     </div>
     <div v-else-if="2 === currentStep" w-full flex flex-col items-center justify-center>
-      <div min-w-xl flex flex-col items-center justify-center gap-4 p-4 card-base>
+      <div card-base min-w-xl flex flex-col items-center justify-center gap-4 p-4>
         <h1 text-title>
           {{ $t('payment') }}
         </h1>

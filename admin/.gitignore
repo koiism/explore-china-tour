@@ -4,6 +4,4 @@ dist
 .output
 .nuxt
 .env
-.env.dev
-.env.prod
 .idea/

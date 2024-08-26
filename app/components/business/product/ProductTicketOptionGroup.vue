@@ -31,6 +31,7 @@ const ticketOptions = computed(() => {
     <BusinessProductTicketOption
       v-for="(option) in ticketOptions" :key="option.title"
       :option="option" :disable="!isTicketAvailable(option)"
+      max-w-full text-start
     />
   </div>
 </template>

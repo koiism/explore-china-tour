@@ -1,0 +1,49 @@
+{
+  "name": "admin",
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.7.0",
+  "scripts": {
+    "build": "nuxi build",
+    "dev": "nuxi dev",
+    "generate": "nuxi generate",
+    "prepare": "nuxi prepare",
+    "start": "node .output/server/index.mjs",
+    "start:generate": "npx serve .output/public",
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@trpc/client": "^10.45.2",
+    "@trpc/server": "^10.45.2",
+    "@types/nodemailer": "^6.4.15",
+    "@vue-email/components": "^0.0.19",
+    "@vue-email/render": "^0.0.9",
+    "antd-zod": "^5.1.0",
+    "es-toolkit": "^1.16.0",
+    "nodemailer": "^6.9.14",
+    "trpc-nuxt": "^0.10.22",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@ant-design-vue/nuxt": "^1.4.2",
+    "@antfu/eslint-config": "^2.25.1",
+    "@iconify-json/carbon": "^1.1.37",
+    "@iconify-json/twemoji": "^1.1.16",
+    "@nuxt/devtools": "^1.3.9",
+    "@nuxt/eslint": "^0.5.0",
+    "@nuxtjs/color-mode": "^3.4.2",
+    "@pinia/nuxt": "^0.5.3",
+    "@unocss/eslint-config": "^0.62.1",
+    "@unocss/nuxt": "^0.62.1",
+    "@vue.ts/complex-types": "^0.6.0",
+    "@vueuse/nuxt": "^10.11.1",
+    "consola": "^3.2.3",
+    "eslint": "^9.9.0",
+    "eslint-plugin-format": "^0.1.2",
+    "nuxt": "^3.12.4",
+    "pinia": "^2.2.1",
+    "typescript": "^5.5.4",
+    "vue-tsc": "^2.0.29"
+  }
+}

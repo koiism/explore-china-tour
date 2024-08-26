@@ -48,7 +48,6 @@ async function checkAvailability() {
     const { orderId } = order[0]
     router.push(`/confirm/${orderId}`)
   }
-  isCheckingAvailability.value = false
 }
 </script>
 
@@ -86,19 +85,13 @@ export interface ICart {
         <BusinessProductTicketOptionGroup :options="product.ticketOptions" />
       </UiSectionCard>
     </Transition>
-    <Transition name="slide-fade">
-      <BusinessProductticketNameInfo v-show="cart.ticketName" :options="product.ticketOptions" />
-    </Transition>
-    <Transition name="slide-fade">
-      <UiSectionCard v-show="cart.ticketName" :title="$t('select-an-entry-time')">
-        <URadioGroup v-model="cart.planTime" :options="options" />
-      </UiSectionCard>
-    </Transition>
-    <Transition name="slide-fade">
-      <UiSectionCard v-show="cart.ticketName" :title="$t('select-number-of-people')">
-        <BusinessProductTicketsSelector v-model="cart.priceInfo" :options="product.ticketOptions" />
-      </UiSectionCard>
-    </Transition>
+    <BusinessProductticketNameInfo v-show="cart.ticketName" :options="product.ticketOptions" />
+    <UiSectionCard v-show="options?.length" :title="$t('select-an-entry-time')">
+      <URadioGroup v-model="cart.planTime" :options="options" />
+    </UiSectionCard>
+    <UiSectionCard v-show="cart.ticketName" :title="$t('select-number-of-people')">
+      <BusinessProductTicketsSelector v-model="cart.priceInfo" :options="product.ticketOptions" />
+    </UiSectionCard>
     <div w-full flex items-center justify-center p-2 md:p-4>
       <UButton :color="enableBook ? 'primary' : 'gray'" variant="solid" :disabled="!enableBook" block :ui="{ rounded: 'rounded-full', font: 'font-bold' }" :loading="isCheckingAvailability" @click="checkAvailability">
         {{ $t('check-availability') }}

@@ -16,7 +16,7 @@ export default defineConfig({
     'switch-animation': 'transition duration-300',
     'text-primary': 'text-green-5 dark:text-green-4 switch-animation',
     'text-common': 'text-[#20202a] dark:text-[#f0f0f0] transition duration-100',
-    'text-p': 'text-[##2d2d3b] dark:text-[#cccccc] text-sm md:line-height-loose line-height-normal',
+    'text-p': 'text-[#2d2d3b] dark:text-[#cccccc] text-sm md:line-height-loose line-height-normal',
     'text-btn': 'text-[#f0f0f0] dark:text-[#20202a] text-sm font-bold transition duration-100',
     'text-subtitle': 'text-common text-xl md:text-2xl font-bold text-start',
     'text-card-title': 'text-common text-lg md:text-xl font-bold text-start',
