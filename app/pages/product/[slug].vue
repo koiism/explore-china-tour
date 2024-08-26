@@ -63,7 +63,7 @@ const bookRoot = ref<HTMLElement>()
       <section flex items-start justify-between gap-16>
         <div flex flex-col items-start justify-start gap-4>
           <BusinessProductInfo :product="product" />
-          <div ref="bookRoot" w-full flex flex-col items-start justify-start gap-4 p-2 card-base md:p-4>
+          <div ref="bookRoot" card-base w-full flex flex-col items-start justify-start gap-4 p-2 md:p-4>
             <BusinessProductBook :product="product" />
           </div>
         </div>

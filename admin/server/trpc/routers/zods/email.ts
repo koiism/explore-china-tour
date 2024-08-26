@@ -1,6 +1,4 @@
 import { z } from 'zod'
-import { zOrderConfirmOptions } from '~/app/components/Email/Template/EmailTemplateOrderConfirm.vue'
-import { zOrderNotifyOptions } from '~/app/components/Email/Template/EmailTemplateOrderNotify.vue'
 
 const zEmailOptionsBase = z.object({
   from: z.string(),
