@@ -6,6 +6,7 @@
     "lint": "pnpm -r lint",
     "build:app": "pnpm -r build:app",
     "build:cms": "pnpm -r build:cms",
+    "build:cms": "pnpm -r build:admin",
     "typecheck": "pnpm -r typecheck",
     "format": "prettier --cache --write ."
   },

@@ -5,6 +5,7 @@
   "packageManager": "pnpm@9.7.0",
   "scripts": {
     "build": "nuxi build",
+    "build:admin": "nuxi build",
     "dev": "nuxi dev",
     "generate": "nuxi generate",
     "prepare": "nuxi prepare",
