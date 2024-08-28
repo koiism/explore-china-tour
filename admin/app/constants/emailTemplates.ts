@@ -1,6 +1,6 @@
 import type { ZodType } from 'zod'
-import EmailTemplateOrderConfirm, { zOrderConfirmOptions } from './EmailTemplateOrderConfirm.vue'
-import EmailTemplateOrderNotify, { zOrderNotifyOptions } from './EmailTemplateOrderNotify.vue'
+import EmailTemplateOrderConfirm, { zOrderConfirmOptions } from '~/app/components/Email/Template/EmailTemplateOrderConfirm.vue'
+import EmailTemplateOrderNotify, { zOrderNotifyOptions } from '~/app/components/Email/Template/EmailTemplateOrderNotify.vue'
 
 export interface IEmailTemplate {
   name: string

@@ -24,7 +24,7 @@ const sendingEmail = ref(false)
 async function sendEmail() {
   try {
     sendingEmail.value = true
-    await $client.email.send.query(sendEmailOption.value)
+    await $client.email.send.mutate(sendEmailOption.value)
 
     notification.success({
       message: '发送成功',

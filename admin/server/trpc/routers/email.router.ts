@@ -4,8 +4,8 @@ import { render } from '@vue-email/render'
 import { mapValues } from 'es-toolkit'
 import { z } from 'zod'
 import { publicProcedure, router } from '../trpc'
+import { emailTemplates } from '../../../app/constants/emailTemplates'
 import { zEmailOptionsBase, zEmailOptionsDefault } from './zods/email'
-import { emailTemplates } from '~/app/components/Email/Template'
 
 const EMAIL_HOST = process.env.EMAIL_HOST
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD
@@ -23,14 +23,14 @@ const transporter = nodemailer.createTransport({
 
 function mailRouterGenerator() {
   return mapValues(emailTemplates, (template) => {
-    const inputSchema = z.object({
+    const inputSchema = zEmailOptionsBase.merge(z.object({
       option: template.schema,
-    }).merge(zEmailOptionsBase)
+    }))
     return publicProcedure
       .input(inputSchema)
-      .query((opts) => {
+      .mutation(async (opts) => {
         const { to, subject, text, from = EMAIL_HOST, option } = opts.input
-        render(template.template, { option }).then((html) => {
+        return await render(template.template, option).then((html) => {
           const mailOptions = {
             from,
             to,
@@ -48,7 +48,7 @@ const templateRouters = mailRouterGenerator()
 
 const send = publicProcedure
   .input(zEmailOptionsDefault)
-  .query((opts) => {
+  .mutation((opts) => {
     const { to, subject, text, html, from = EMAIL_HOST } = opts.input
     const mailOptions = {
       from,

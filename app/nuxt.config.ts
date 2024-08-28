@@ -10,6 +10,7 @@ const supabaseUrl = process.env.SUPABASE_URL!
 const supabaseKey = process.env.SUPABASE_KEY!
 const paypalClientId = process.env.PAYPAL_CLIENT_ID!
 const baseUrl = process.env.APP_BASE_URL!
+const TRPC_HOST = process.env.ADMIN_BASE_URL! || 'http://localhost:3000'
 
 export default defineNuxtConfig({
   alias: {
@@ -30,6 +31,11 @@ export default defineNuxtConfig({
   extends: [
     'nuxt-umami',
   ],
+  runtimeConfig: {
+    public: {
+      TRPC_HOST,
+    },
+  },
   appConfig: {
     umami: {
       version: 2,
@@ -104,6 +110,9 @@ export default defineNuxtConfig({
       routes: ['/'],
       ignore: ['/post'],
     },
+  },
+  routeRules: {
+    '/api/**': { cors: true },
   },
 
   app: {

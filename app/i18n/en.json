@@ -46,6 +46,25 @@
   "notice": "Notice",
   "opening-time": "Opening Time",
   "order-summary": "Order summary",
+  "orderConfirm": {
+    "description": "Thank you for your purchase! We have sent a confirmation email to your email address with the order details. Please:",
+    "end": "We look forward to providing you with excellent service and wish you an enjoyable journey!",
+    "notice": {
+      "1": {
+        "content": ": Please carefully review the details such as name, passport number, ticket type, purchase date, and selected date in the email to ensure they are correct.",
+        "title": "Confirm Order Information in the Email"
+      },
+      "2": {
+        "content": ": If you have not received the email yet, please wait for approximately three minutes as the email might still be in transit. Additionally, please check your spam folder in case the email was mistakenly categorized as spam.",
+        "title": "Check Your Email"
+      },
+      "3": {
+        "content": ": If you still do not receive the email after three minutes, or if there are any issues with the email, please feel free to contact us at ",
+        "title": "Contact Customer Service"
+      }
+    },
+    "title": "Order Confirmation and Email Notification"
+  },
   "passport": "Passport",
   "payment": "Payment",
   "per-person": "per person",

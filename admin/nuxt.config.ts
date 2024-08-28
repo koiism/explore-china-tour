@@ -1,6 +1,10 @@
 import Path from 'node:path'
 import process from 'node:process'
+import PluginVue from '@vitejs/plugin-vue'
 import { appDescription } from './app/constants/index'
+
+const supabaseUrl = process.env.SUPABASE_URL!
+const supabaseKey = process.env.SUPABASE_KEY!
 
 export default defineNuxtConfig({
   alias: {
@@ -28,6 +32,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
     '@ant-design-vue/nuxt',
+    '@nuxtjs/supabase',
   ],
 
   runtimeConfig: {
@@ -63,6 +68,24 @@ export default defineNuxtConfig({
       routes: ['/'],
       ignore: ['/hi'],
     },
+    rollupConfig: {
+      // eslint-disable-next-line ts/ban-ts-comment
+      // @ts-expect-error
+      plugins: [PluginVue()],
+    },
+  },
+
+  imports: {
+    presets: [
+      {
+        from: 'zod',
+        imports: ['z'],
+      },
+    ],
+  },
+
+  routeRules: {
+    '/api/**': { cors: true },
   },
 
   app: {
@@ -103,4 +126,10 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2024-08-14',
+
+  supabase: {
+    url: supabaseUrl,
+    key: supabaseKey,
+    redirect: false,
+  },
 })

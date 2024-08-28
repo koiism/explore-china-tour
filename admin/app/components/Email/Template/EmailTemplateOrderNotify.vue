@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { z } from 'zod'
+import { computed } from 'vue'
+import EmailTemplateBase from './EmailTemplateBase.vue'
+import EmailTemplateMd from './EmailTemplateMd.vue'
 
 const props = defineProps<{
   productName: string

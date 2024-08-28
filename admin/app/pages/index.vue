@@ -6,7 +6,7 @@ definePageMeta({
 const online = useOnline()
 const { $client } = useNuxtApp()
 
-const hello = await $client.demo.hello.useQuery({ text: 'client' })
+const hello = await $client.demo.hello.useQuery()
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EEmailTemplate, type IEmailTemplate, emailTemplates } from '~/app/components/Email/Template'
+import { EEmailTemplate, type IEmailTemplate, emailTemplates } from '~/app/constants/emailTemplates'
 import type { TEmailOptionsDefault } from '~/server/trpc/routers/zods/email'
 
 const { public: { EMAIL_HOST } } = useRuntimeConfig()

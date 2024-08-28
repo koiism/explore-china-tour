@@ -1,15 +1,9 @@
-import { z } from 'zod'
 import { publicProcedure, router } from '../trpc'
 
 const hello = publicProcedure
-  .input(
-    z.object({
-      text: z.string().nullish(),
-    }),
-  )
-  .query(({ input }) => {
+  .query(() => {
     return {
-      greeting: `hello ${input?.text ?? 'world'}`,
+      greeting: `hello`,
     }
   })
 

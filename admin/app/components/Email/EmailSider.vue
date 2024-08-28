@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { IEmailTemplate } from '~/app/components/Email/Template'
-import { emailTemplates } from '~/app/components/Email/Template'
+import type { IEmailTemplate } from '~/app/constants/emailTemplates'
+import { emailTemplates } from '~/app/constants/emailTemplates'
 
 const model = defineModel<IEmailTemplate>({
   required: true,

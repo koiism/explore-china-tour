@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
 const zEmailOptionsBase = z.object({
-  from: z.string(),
-  to: z.string().email(),
+  from: z.string().optional(),
+  to: z.string().email().or(z.string().email().array()),
   subject: z.string(),
   text: z.string(),
 })

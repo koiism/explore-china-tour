@@ -5,6 +5,8 @@ const props = defineProps<{
   cart: ICart
 }>()
 
+const emit = defineEmits(['approve'])
+
 const { trackEvent } = useUmami()
 onMounted(() => {
   usePaypalButton({
@@ -23,6 +25,7 @@ onMounted(() => {
     onApprove: async (data, actions) => {
       try {
         const details = await actions.order?.capture()
+        emit('approve', details)
         trackEvent('order-approved', details)
       }
       catch (error) {
