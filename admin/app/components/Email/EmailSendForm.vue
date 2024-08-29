@@ -49,7 +49,7 @@ async function sendEmail() {
     <AFormItem label="发件人">
       <AInput v-model:value="sendEmailOption.from" />
     </AFormItem>
-    <AFormItem label="收件人" required>
+    <AFormItem v-if="typeof sendEmailOption.to === 'string'" label="收件人" required>
       <AInput v-model:value="sendEmailOption.to" name="email" autocomplete="true" />
     </AFormItem>
     <AFormItem label="主题" required>

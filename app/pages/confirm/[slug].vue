@@ -166,7 +166,7 @@ async function onOrderApproved() {
               {{ $t('subtotal') }}:
             </span>
             <span text-subtitle text-primary>
-              {{ $t('dollar') }} {{ (order.priceInfo as ITicket[]).reduce((acc, info) => (acc + (info?.price ?? 0)), 0) }}
+              {{ $t('dollar') }} {{ (order.priceInfo as ITicket[]).reduce((acc, info) => (acc + (info?.price ?? 0) * (info?.quantity ?? 1)), 0) }}
             </span>
           </div>
         </div>

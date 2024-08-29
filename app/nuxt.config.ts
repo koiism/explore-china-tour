@@ -25,9 +25,6 @@ export default defineNuxtConfig({
     host: '0.0.0.0',
     port: 3001,
   },
-  plugins: [
-    'plugins/client',
-  ],
   extends: [
     'nuxt-umami',
   ],
@@ -39,6 +36,14 @@ export default defineNuxtConfig({
   appConfig: {
     umami: {
       version: 2,
+    },
+  },
+  typescript: {
+    tsConfig: {
+      include: [
+        // 未知原因导致IDE无法解析自动导入的组件，手动添加后解决
+        './components.d.ts',
+      ],
     },
   },
   modules: [

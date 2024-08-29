@@ -56,7 +56,7 @@ async function createOrder(cart: ICart) {
         break
       }
       const priceOption = await queryPriceOptionById(price.priceOptionId)
-      amount = priceOption.price * price.quantity
+      amount += priceOption.price * price.quantity
     }
     catch (e: any) {
       console.error(e)

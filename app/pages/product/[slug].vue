@@ -23,12 +23,12 @@ if (status.value === 'success') {
     icon: 'i-heroicons-home',
     to: '/',
   })
-  if (product.value?.city) {
-    links.value.push({
-      label: product.value?.city?.name ?? '',
-      icon: 'i-heroicons-building-office-2',
-    })
-  }
+  // if (product.value?.city) {
+  //   links.value.push({
+  //     label: product.value?.city?.name ?? '',
+  //     icon: 'i-heroicons-building-office-2',
+  //   })
+  // }
   links.value.push({
     label: product.value!.title!,
     icon: 'i-heroicons-ticket',
@@ -63,7 +63,7 @@ const bookRoot = ref<HTMLElement>()
       <section flex items-start justify-between gap-16>
         <div flex flex-col items-start justify-start gap-4>
           <BusinessProductInfo :product="product" />
-          <div ref="bookRoot" card-base w-full flex flex-col items-start justify-start gap-4 p-2 md:p-4>
+          <div ref="bookRoot" w-full flex flex-col items-start justify-start gap-4 p-2 card-base md:p-4>
             <BusinessProductBook :product="product" />
           </div>
         </div>
