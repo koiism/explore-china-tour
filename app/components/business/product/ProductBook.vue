@@ -5,7 +5,7 @@ import type { TProduct, TTicketOption } from '~/sanity/queries'
 const props = defineProps<{
   product: TProduct
 }>()
-const cart = ref<ICart>(defaultCart)
+const cart = ref<ICart>(Object.assign({}, defaultCart))
 cart.value.productId = props.product._id
 provide(CART_KEY, cart)
 const ticketName = computed<TTicketOption | undefined>(() => {
