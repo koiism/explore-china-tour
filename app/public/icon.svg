@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<svg width="250" height="250" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" version="1.0">
+ <g class="layer">
+  <title>Layer 1</title>
+  <g class="icon-text-wrapper icon-svg-group iconsvg" fill="#333" id="svg_3">
+   <g class="iconsvg-imagesvg" id="svg_4" transform="translate(0 0)">
+    <g id="svg_5">
+     <g id="svg_1" transform="matrix(2.20934 0 0 2.20934 -51.5881 -50.4222)">
+      <svg class="image-svg-svg primary" height="107.28" id="svg_2" width="111.6" x="23.8" y="25.54">
+       <g id="svg_6">
+        <svg id="svg_11" viewBox="-0.007491213269531727 0.015001014806330204 104.00749206542969 99.98495483398438" xmlns="http://www.w3.org/2000/svg">
+         <title>资源 60</title>
+         <path d="m85.27,14.84a49.92,49.92 0 1 0 -0.06,70.54l-35.29,-35.3l35.35,-35.24z" fill="#08de4a" id="svg_14" opacity="0.8"/>
+         <path d="m104,14.68a49.93,49.93 0 1 0 0,70.53l-35.33,-35.29l35.33,-35.24z" fill="#fffa66" id="svg_13"/>
+         <path d="m85.21,85.38l-35.29,-35.3l35.35,-35.24a49.8,49.8 0 0 0 -26.41,-13.84a49.92,49.92 0 0 0 0.86,98a49.8,49.8 0 0 0 25.49,-13.62z" fill="#08de4a" id="svg_12"/>
+        </svg>
+       </g>
+      </svg>
+     </g>
+     <!---->
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

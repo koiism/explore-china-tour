@@ -10,6 +10,15 @@ import type { Json } from '~/types/supabase'
 definePageMeta({
   layout: false,
 })
+const title = 'Explore China Tour'
+const desc = ''
+useSeoMeta({
+  title,
+  ogTitle: title,
+  description: desc,
+  ogDescription: desc,
+  twitterCard: 'summary_large_image',
+})
 
 const { $client } = useNuxtApp()
 const orderId = useRoute<'confirm-slug___en'>().params.slug
@@ -65,17 +74,15 @@ async function onSubmit(e: FormSubmitEvent<TForm>) {
   currentStep.value++
 }
 async function onOrderApproved() {
-  const res = await $client.order.approve.mutate({
+  currentStep.value++
+  sb.from('order').update({
+    orderStatus: 'PAID',
+  }).eq('orderId', orderId)
+  $client.order.approve.mutate({
     ...form.value,
     productName: product.value?.title || '',
     orderId,
   })
-  if (res.status === 0) {
-    await sb.from('order').update({
-      orderStatus: 'PAID',
-    }).eq('orderId', orderId)
-    currentStep.value++
-  }
 }
 </script>
 
